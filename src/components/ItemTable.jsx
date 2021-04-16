@@ -20,16 +20,16 @@ export const ItemTable = ({ItemsData}) => {
     
     const {pageIndex}=state;
     
-    const getId=(id)=>{
-        // console.log(id);
-        // window.location.href="#/mwo/"+id;  
-        alert(id);
-      }    
+    const getItemId=(id)=>{
+        
+        window.location.href="#/item/"+id  //Taking to 
+      
+    }    
     
     return (
         <>
-        <h3 style={{marginTop:'30px'}}><u>Items Table</u></h3>
-        <table {...getTableProps()} className="responsive-card-table unstriped">
+        <h3 style={{marginTop:'30px'}} className='font'>Order Details</h3>
+        <table {...getTableProps()}  className="responsive-card-table unstriped item-table">
             <thead>
                 {
                     headerGroups.map((headerGroup)=>(
@@ -52,7 +52,7 @@ export const ItemTable = ({ItemsData}) => {
                     page.map((row)=>{
                         prepareRow(row);
                         return (
-                            <tr {...row.getrowProps} onClick={()=> getId(row.original.id) }>
+                            <tr {...row.getrowProps} onClick={()=> getItemId(row.original.id) }>
                                 {
                                     row.cells.map((cell)=>{
                                     return <td data-column={cell.column.Header} {...cell.getCellProps}>{cell.render('Cell')}</td>

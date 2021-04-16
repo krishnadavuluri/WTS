@@ -5,9 +5,7 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: black;
 }
-.bg{
-    background-color:#3498db;
-}
+
 .link-style{
   color: #121414;
   font-weight: 700;
@@ -45,4 +43,24 @@
 }
 .popup{
     width: '1000px';
+}
+.bg
+{
+    
+    background: #c8ff00;
+}
+.Button
+{
+    color: black;
+    background-color: #c8ff00 ;
+    border: 1px solid black;
+    height: 34px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.font
+{
+    font-family: 'Open Sans',sans-serif;
 }

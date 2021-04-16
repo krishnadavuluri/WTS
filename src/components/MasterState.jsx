@@ -3,11 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import { MDBFormInline, MDBInput } from 'mdbreact';
 import {useForm} from 'react-hook-form';
 import Button from '@material-ui/core/Button';
-import '../styles/styling.css';
+import "../styles/styling.css";
 import axios from 'axios'
 import API from '../requestAPI/allAPI'
 import { MasterTable } from './MasterTable';
-export default function MasterState()
+export default function Home()
 {
     const {register}=useForm();
     const [state,setState]=useState('opened');

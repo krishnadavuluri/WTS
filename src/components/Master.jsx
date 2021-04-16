@@ -3,13 +3,15 @@ import MasterCount from './MasterCount';
 import ItemData from '../sampleJson/ItemData.json'
 import MasterCost from './MasterCost';
 import { ItemTable } from './ItemTable';
-export const Test = ({match}) => {
-    //console.log(ItemDate);
+import { TopNavbar } from './Navbar';
+ const Master = ({match}) => {
     return (
         <div>
+          <TopNavbar/>
           <MasterCount data={ItemData}/>
           <MasterCost data={ItemData}/>
           <ItemTable ItemsData={ItemData}/>
         </div>
     )
 }
+export default Master;

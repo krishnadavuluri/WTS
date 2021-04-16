@@ -38,7 +38,7 @@ export default class MasterCost extends Component
     render(){
         return(
             <div>
-               { this.state.flag ? <MasterCostChart data={this.state.costData}/>: ""}
+               { this.state.flag ? <MasterCostChart noOfItems={this.props.data.length} data={this.state.costData}/>: ""}
             </div>
         )
     }
