@@ -7,7 +7,7 @@ export const MasterTableColumn=[
     {Header:'COST',accessor:'costString'},
     {Header:'COUNT',accessor:'countString'}
 ]
-export const ItemTableColumn=[
+export const ItemTableColumn=[                                  // Table column formats.
     {Header:'ID',accessor:'id'},
     {Header:'ITEM',accessor:'title'},
     {Header:'START_DATE',accessor:'startDate'},

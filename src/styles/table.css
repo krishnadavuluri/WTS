@@ -2,8 +2,24 @@ table {
 	width: 1200px; 
 	border-collapse: collapse; 
 	margin:100px auto;
+	margin-bottom: 5px;
 	}
-
+.dropDown{
+	margin-top: 20px;
+	width: 50px;
+	background-color:#c8ff00 ;
+}
+.dropDown:hover{
+	background-color: #e1ff7b;
+}
+option:hover{
+   background-color:#e1ff7b;
+}
+.Go-to-page
+{
+   width: 30px;
+   margin-right: 5px;
+}
 /* Zebra striping */
 tr:nth-of-type(even) { 
 	background:white; 
@@ -35,10 +51,18 @@ only screen and (max-width: 760px),
 		  width: 100%;
 		  margin: 10px auto;
 	}
+	.dropDown{
+		margin-top: 10px;
+	}
 
 	/* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr { 
 		display: block; 
+	}
+	.Go-to-page{
+		width: 100px;
+		font-size: 10px;
+		margin: 0;
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
@@ -77,4 +101,17 @@ only screen and (max-width: 760px),
 }
 .item-table{
 	margin: 15px auto;
+}
+.item-dropDown{
+	background:#c8ff00; 
+	width:50;
+	border: 1px solid black;
+	margin-top: 10px;
+}
+.item-dropDown:hover{
+	background-color:#e1ff7b;
+}
+.button{
+	background-color:  #e1ff7b;
+	border: 1px solid black;
 }

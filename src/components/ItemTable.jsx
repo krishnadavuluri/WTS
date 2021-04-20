@@ -16,19 +16,18 @@ export const ItemTable = ({ItemsData}) => {
     },useSortBy,usePagination);
     
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,
-        canPreviousPage,nextPage,pageOptions,state,previousPage}=tableInstance;
+        canPreviousPage,nextPage,pageOptions,setPageSize,state,previousPage}=tableInstance;
     
-    const {pageIndex}=state;
+    const {pageIndex,pageSize}=state;
     
     const getItemId=(id)=>{
         
-        window.location.href="#/item/"+id  //Taking to 
-      
+        window.location.href="#/item/"+id  //Taking to Item view
     }    
     
     return (
         <>
-        <h3 style={{marginTop:'30px'}} className='font'>Order Details</h3>
+        <h3 style={{marginTop:'35px'}} className='font'>Order Details</h3>
         <table {...getTableProps()}  className="responsive-card-table unstriped item-table">
             <thead>
                 {
@@ -65,6 +64,13 @@ export const ItemTable = ({ItemsData}) => {
             </tbody>
         </table>
         <div>
+              <select className='item-dropDown' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
+                {
+                  [10,15,20,50].map(pageSize=>(
+                  <option value={pageSize}>Show {pageSize}</option>
+                    ))
+                }
+              </select>{' '}
               <span>
                   Page{' '}
                   <strong>
@@ -73,16 +79,16 @@ export const ItemTable = ({ItemsData}) => {
               </span>
               <span>
                    | Go to{' '}
-                   <input type='text' 
+                   <input className='Go-to-page' type='text' 
                    onChange={(e)=>{
                        const pageNumber= e.target.value ? Number(e.target.value)-1: 0
                        gotoPage(pageNumber)
-                   }} style={{width:'40px'}} /> 
-              </span>{' '}
-            <button onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-                <button onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
-                <button onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
-            <button onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
+                   }}  /> 
+              </span>
+            <button style={{marginLeft:'15px'}} className='button' onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+                <button className='button' onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
+                <button className='button' onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
+            <button className='button' onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
         </div>
         </>
     )

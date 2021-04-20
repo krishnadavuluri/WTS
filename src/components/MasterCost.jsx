@@ -1,44 +1,42 @@
 import React ,{ Component} from 'react';
-import MasterCostChart from './charts/MasterCostChart';
+
 import Service from '../utils/service';
+import { MasterCostChart } from './charts/MasterCostChart';
 export default class MasterCost extends Component
 {
     constructor(props)
     {
         super(props);
         this.state={
-            costData:{},
+            itemsActualCost:[],
+            itemsEstimatedCost:[],
+            itemsId:[],
+            noOfItems:0,
             flag:false
         }
     }
     componentDidMount()
     {
         const ItemsData=this.props.data;
-        const colors=Service.colourGenerator(ItemsData.length);
-        var ItemsCost=[];
-        var ItemsName=[];
+        var actCost=[];
+        var estCost=[];
+        var ItemsId=[];
+        var NoOfItems=0;
         ItemsData.map((eachItme)=>{
-            ItemsCost=[...ItemsCost,eachItme.actualCost]
-        ItemsName=[...ItemsName,`${eachItme.title}| estCost:${eachItme.estimatedCost}`]
+            actCost=[...actCost,eachItme.actualCost]
+            estCost=[...estCost,eachItme.estimatedCost]
+            ItemsId=[...ItemsId,"#"+eachItme.id]
+            NoOfItems+=1
         })
-        this.setState({
-            costData:{
-                labels:ItemsName,
-                datasets:[
-                    {
-                      label:'Acutual Cost',
-                      data:ItemsCost,
-                      fill:true,
-                      backgroundColor:colors,
-                      borderWidth: 1
-                    }
-                ]
-            },flag:true })
+        console.log(actCost,estCost);
+        this.setState({noOfItems:NoOfItems,itemsActualCost:actCost,itemsEstimatedCost:estCost,itemsId:ItemsId,flag:true})
     }
     render(){
+        console.log(this.state.itemsActualCost);
         return(
             <div>
-               { this.state.flag ? <MasterCostChart noOfItems={this.props.data.length} data={this.state.costData}/>: ""}
+               { this.state.flag ? <MasterCostChart noOfItems={this.state.noOfItems} actualCost={this.state.itemsActualCost} estimatedCost={this.state.itemsEstimatedCost}
+                itemsId={this.state.itemsId} />: ""}
             </div>
         )
     }

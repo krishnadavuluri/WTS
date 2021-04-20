@@ -1,5 +1,5 @@
 import React,{useMemo} from 'react'
-import {useTable,useSortBy,useGlobalFilter,usePagination} from 'react-table';
+import {useTable,useSortBy,usePagination} from 'react-table';
 import MOCK_DATA from '../sampleJson/MasterData.json';
 import '../styles/table.css'; 
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'; 
@@ -11,18 +11,15 @@ export const MasterTable = () => {
     
     const data=useMemo(()=>MOCK_DATA,[]);
     
-    const tableInstance=useTable({
-        columns:column,data:data
-    },useSortBy,usePagination);
+    const tableInstance=useTable({columns:column,data:data},useSortBy,usePagination); // specifying data,comlumn and options used in table
     
-    const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,
-        canPreviousPage,nextPage,pageOptions,state,previousPage}=tableInstance;
+    const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,  //extracting all props from table instance
+        canPreviousPage,nextPage,pageOptions,state,setPageSize,previousPage}=tableInstance;
     
-    const {pageIndex}=state;
+    const {pageIndex,pageSize}=state; //To keep track of current page and page size
     
     const getId=(id)=>{
-        console.log(id);
-        window.location.href="#/mwo/"+id;  
+        window.location.href="#/mwo/"+id; // function takes Master View  
       }    
     
     return (
@@ -63,24 +60,34 @@ export const MasterTable = () => {
             </tbody>
         </table>
         <div>
+            <span>
+                {'Show '}
+                <select className='dropDown' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
+                   {
+                   [10,15,20,50].map(pageSize=>(
+                   <option key={pageSize} value={pageSize}>{pageSize}</option>
+                   ))
+                   }
+                </select>
+            </span>{'  '}
               <span>
                   Page{' '}
                   <strong>
                      {pageIndex+1} of {pageOptions.length}
                   </strong>{' '}
               </span>
-              <span>
+              
                    | Go to{' '}
-                   <input type='text' 
+                   <input  className='Go-to-page' type='text' 
                    onChange={(e)=>{
                        const pageNumber= e.target.value ? Number(e.target.value)-1: 0
                        gotoPage(pageNumber)
-                   }} style={{width:'40px'}} /> 
-              </span>{' '}
-            <button onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-                <button onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
-                <button onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
-            <button onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
+                   }}  /> 
+        
+            <button style={{marginLeft:'10px'}} className='button' onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+                <button className='button' onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
+                <button className='button' onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
+            <button className='button' onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
         </div>
         </>
     )

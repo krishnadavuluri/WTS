@@ -19,7 +19,7 @@ export default class MasterCount  extends React.Component{
         var itemsName=[];
         itemsData.map((eachItem)=>{
             itemsCount=[...itemsCount,Math.ceil((eachItem.completedCount/eachItem.count)*100)]
-            itemsName=[...itemsName,`${eachItem.count}-${eachItem.title}`]
+            itemsName=[...itemsName,'#'+`${eachItem.id} `]
         })
         this.setState({countData:
         {

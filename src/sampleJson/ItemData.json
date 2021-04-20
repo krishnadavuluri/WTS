@@ -9,8 +9,8 @@
         "endDate":"2021/4/13",
         "count":150,
         "completedCount":72,
-        "actualCost":400.1,
-        "estimatedCost":500.80,
+        "actualCost":3400.16,
+        "estimatedCost":5000.80,
         "countString":"3/12",
         "costString":"400.1/500.08"
     },
@@ -23,8 +23,8 @@
         "assignee":"Vishnu",
         "endDate":"2021/4/13",
         "count":700,
-        "completedCount":240,
-        "actualCost":40.70,
+        "completedCount":400,
+        "actualCost":1400.34,
         "estimatedCost":700.80,
         "countString":"4/700",
         "costString":"40.70/700.80"
@@ -39,7 +39,7 @@
         "endDate":"2021/4/13",
         "count":2000,
         "completedCount":259,
-        "actualCost":405.10,
+        "actualCost":5567.58,
         "estimatedCost":8000.00,
         "countString":"259/2000",
         "costString":"405.10/8000.00"
@@ -54,7 +54,7 @@
         "endDate":"2021/4/13",
         "count":200,
         "completedCount":143,
-        "actualCost":14300.00,
+        "actualCost":21000.21,
         "estimatedCost":20000.00,
         "countString":"143/200",
         "costString":"14300.00/20000.00"
@@ -69,8 +69,8 @@
         "endDate":"2021/4/13",
         "count":500,
         "completedCount":100,
-        "actualCost":20000.00,
-        "estimatedCost":100000.00,
+        "actualCost":9000.45,
+        "estimatedCost":10000.89,
         "countString":"100/500",
         "costString":"20000.00/100000.00"
     },
@@ -84,8 +84,8 @@
         "endDate":"2021/4/13",
         "count":300,
         "completedCount":190,
-        "actualCost":4000.00,
-        "estimatedCost":10000.00,
+        "actualCost":4090.00,
+        "estimatedCost":12000.00,
         "countString":"190/300",
         "costString":"4000.00/10000.00"
     },
@@ -99,7 +99,7 @@
         "endDate":"2021/4/13",
         "count":200,
         "completedCount":60,
-        "actualCost":1000.13,
+        "actualCost":3000.13,
         "estimatedCost":5000.80,
         "countString":"60/200",
         "costString":"1000.13/5000.80"
@@ -114,8 +114,8 @@
         "endDate":"2021/4/13",
         "count":55,
         "completedCount":53,
-        "actualCost":110.10,
-        "estimatedCost":550.80,
+        "actualCost":4000.10,
+        "estimatedCost":5500.80,
         "countString":"11/55",
         "costString":"110.10/550.80"
     }
