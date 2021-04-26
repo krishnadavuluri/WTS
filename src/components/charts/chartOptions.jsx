@@ -19,9 +19,12 @@ export const costChartOptions={
       enabled: false,
       offsetX: -6,
       style: {
-        fontSize: '12px',
+        fontSize: '100px',
         colors: ['#fff']
       }
+    },
+    lenged:{
+       fontSize:'32px'
     },
     stroke: {
       show: true,

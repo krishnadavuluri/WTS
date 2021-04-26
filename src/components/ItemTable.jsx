@@ -4,16 +4,19 @@ import MOCK_DATA from '../sampleJson/MasterData.json';
 import '../styles/table.css'; 
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-import { ItemTableColumn } from './TableDataColumn/columnFormat';
-export const ItemTable = ({ItemsData}) => {
-    
-    const column=useMemo(()=>ItemTableColumn,[]);
-    
-    const data=useMemo(()=>ItemsData,[]);
+import { MultiLanguageTableColumn } from './TableDataColumn/columnFormat';
+import {IntlProvider, FormattedMessage} from 'react-intl';
+import { LangMessage } from '../locale/locale';
+export const ItemTable = ({ItemsData,mwoId,language}) => {
+    const unsortColumnName=['COST','COUNT','लागत','गिनती','செலவு','எண்ணிக்கை']; 
+    const tableColumn=MultiLanguageTableColumn[language];
+    const column=useMemo(()=>tableColumn,[]);
+    //console.log(ItemsData)
+    const data=useMemo(()=>ItemsData,[ItemsData]);
     
     const tableInstance=useTable({
         columns:column,data:data
-    },useSortBy,usePagination);
+    },useSortBy,usePagination);               //initializing column data to table
     
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,
         canPreviousPage,nextPage,pageOptions,setPageSize,state,previousPage}=tableInstance;
@@ -22,12 +25,16 @@ export const ItemTable = ({ItemsData}) => {
     
     const getItemId=(id)=>{
         
-        window.location.href="#/item/"+id  //Taking to Item view
+        window.location.href=`#/mwo/${mwoId}/item/`+id+'/lang/'+language  //Taking to Item view
     }    
     
     return (
         <>
-        <h3 style={{marginTop:'35px'}} className='font'>Order Details</h3>
+         <IntlProvider locale={language} messages={LangMessage[language]}>
+              <h3 style={{marginTop:'35px'}} className='font'>
+                  <FormattedMessage id='orderDetails' value={language}/>
+              </h3>
+         </IntlProvider>
         <table {...getTableProps()}  className="responsive-card-table unstriped item-table">
             <thead>
                 {
@@ -35,7 +42,7 @@ export const ItemTable = ({ItemsData}) => {
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {
                                 headerGroup.headers.map((column)=>(
-                                <th {...column.getHeaderProps(column.Header!=="COST" && column.Header!=="COUNT" ? column.getSortByToggleProps():"")} >{column.render('Header')}
+                                <th {...column.getHeaderProps(!unsortColumnName.includes(column.Header) ? column.getSortByToggleProps():"")} >{column.render('Header')}
                                 <span style={{marginLeft:'20px'}}>
                                     {column.isSorted? (column.isSortedDesc? <ArrowDownwardIcon/>:<ArrowUpwardIcon/>):''}
                                 </span>
@@ -51,7 +58,7 @@ export const ItemTable = ({ItemsData}) => {
                     page.map((row)=>{
                         prepareRow(row);
                         return (
-                            <tr {...row.getrowProps} onClick={()=> getItemId(row.original.id) }>
+                            <tr {...row.getrowProps} onClick={()=> getItemId(row.original.id) }> {/* Table row */}
                                 {
                                     row.cells.map((cell)=>{
                                     return <td data-column={cell.column.Header} {...cell.getCellProps}>{cell.render('Cell')}</td>
@@ -64,24 +71,26 @@ export const ItemTable = ({ItemsData}) => {
             </tbody>
         </table>
         <div>
-              <select className='item-dropDown' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
+           <IntlProvider locale={language} messages={LangMessage[language]}>
+              <label id='show'><FormattedMessage id='show' value={language}/></label>{' '}
+              <select className='item-dropDown' id='show' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
                 {
                   [10,15,20,50].map(pageSize=>(
-                  <option value={pageSize}>Show {pageSize}</option>
-                    ))
+                  <option value={pageSize}>{pageSize}</option>  // table size drop down
+                    ))                                               
                 }
               </select>{' '}
-              <span>
-                  Page{' '}
+              <span>                                                
+                  <FormattedMessage id='page' value={language}/>{' '}
                   <strong>
-                     {pageIndex+1} of {pageOptions.length}
-                  </strong>{' '}
+                     {pageIndex+1} of {pageOptions.length}         
+                  </strong>{' '}        {/* displaying no of pages */}
               </span>
               <span>
-                   | Go to{' '}
+                   | <FormattedMessage id='goTo' value={language}/>{' '}
                    <input className='Go-to-page' type='text' 
-                   onChange={(e)=>{
-                       const pageNumber= e.target.value ? Number(e.target.value)-1: 0
+                   onChange={(e)=>{                                                 
+                       const pageNumber= e.target.value ? Number(e.target.value)-1: 0  // Go to page input
                        gotoPage(pageNumber)
                    }}  /> 
               </span>
@@ -89,6 +98,7 @@ export const ItemTable = ({ItemsData}) => {
                 <button className='button' onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
                 <button className='button' onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
             <button className='button' onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
+          </IntlProvider>
         </div>
         </>
     )

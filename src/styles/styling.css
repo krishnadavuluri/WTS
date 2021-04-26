@@ -60,3 +60,7 @@
 {
     font-family: 'Open Sans',sans-serif;
 }
+.language-dropDown{
+    margin-right: 10px;
+    border: '1px solid black';
+}

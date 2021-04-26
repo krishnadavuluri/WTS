@@ -17,14 +17,14 @@ export default class MasterCount  extends React.Component{
         const colors=Service.colourGenerator(itemsData.length);
         var itemsCount=[];
         var itemsName=[];
-        itemsData.map((eachItem)=>{
+        itemsData.map((eachItem)=>{                                                            //destructuring data
             itemsCount=[...itemsCount,Math.ceil((eachItem.completedCount/eachItem.count)*100)]
             itemsName=[...itemsName,'#'+`${eachItem.id} `]
         })
         this.setState({countData:
         {
            datasets:[
-               {
+               {                                  //setting state
                    data:itemsCount,
                    backgroundColor:colors,
                    label:'My data'
@@ -36,7 +36,9 @@ export default class MasterCount  extends React.Component{
     {
         return(
             <div className='defaultMargin'>
-                {this.state.flag ?  <MasterCountChart noOfItems={this.props.data.length}  data={this.state.countData}/> :<h1>Hello</h1>}
+                {this.state.flag ?  <MasterCountChart language={this.props.language} 
+                                     noOfItems={this.props.data.length}  
+                                     data={this.state.countData} /> : ''}
             </div>
         );
     }

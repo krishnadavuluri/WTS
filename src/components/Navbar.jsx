@@ -5,7 +5,7 @@ import '../styles/styling.css';
 export const TopNavbar = () => {
     
     const handleHomeClick=()=>{
-        window.location.href='#/home';
+        window.location.href='#/';  // redirecting to home
     }
     return (
         <div>

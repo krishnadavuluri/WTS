@@ -1,6 +1,4 @@
 import React ,{ Component} from 'react';
-
-import Service from '../utils/service';
 import { MasterCostChart } from './charts/MasterCostChart';
 export default class MasterCost extends Component
 {
@@ -21,7 +19,7 @@ export default class MasterCost extends Component
         var actCost=[];
         var estCost=[];
         var ItemsId=[];
-        var NoOfItems=0;
+        var NoOfItems=0;                                     //destructuring data
         ItemsData.map((eachItme)=>{
             actCost=[...actCost,eachItme.actualCost]
             estCost=[...estCost,eachItme.estimatedCost]
@@ -29,14 +27,14 @@ export default class MasterCost extends Component
             NoOfItems+=1
         })
         console.log(actCost,estCost);
-        this.setState({noOfItems:NoOfItems,itemsActualCost:actCost,itemsEstimatedCost:estCost,itemsId:ItemsId,flag:true})
+        this.setState({noOfItems:NoOfItems,itemsActualCost:actCost,itemsEstimatedCost:estCost,itemsId:ItemsId,flag:true}) // setting state
     }
     render(){
-        console.log(this.state.itemsActualCost);
+        // console.log(this.state.itemsActualCost);
         return(
             <div>
-               { this.state.flag ? <MasterCostChart noOfItems={this.state.noOfItems} actualCost={this.state.itemsActualCost} estimatedCost={this.state.itemsEstimatedCost}
-                itemsId={this.state.itemsId} />: ""}
+               { this.state.flag ? <MasterCostChart language={this.props.language} noOfItems={this.state.noOfItems} actualCost={this.state.itemsActualCost} estimatedCost={this.state.itemsEstimatedCost}
+                itemsId={this.state.itemsId} />: ""}  {/* conditiondal rendering */}
             </div>
         )
     }
