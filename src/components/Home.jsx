@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import {useForm} from 'react-hook-form';
 import "../styles/styling.css";                //User home page
 import axios from 'axios'
-import { MasterTable } from './MasterTable';
+import { Table } from './Table';
 import Loader from './loader';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
@@ -14,12 +14,15 @@ export default function Home()
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
     const [flag,setFlag]=useState(false)                  // setting flag
     const [locale,setLocale]=useState('English');
+
     const handleRadio1=(e)=>{
         setState(e.target.name);          // Handle radio button action
     }
-    const handleLang=(e)=>{
+
+    const handleLocale=(e)=>{
         setLocale(e.target.value);
     }
+
     useEffect(()=>{
         async function getData()
         {
@@ -50,7 +53,7 @@ export default function Home()
               </Grid>
               <Grid item xs={6} style={{marginTop:'5px'}} >
                    <label id='landDropDown' className='text'><FormattedMessage id='language' value={{locale}}/>{': '}</label>
-                   <select onChange={handleLang} id='landDropDown' className='language-dropDown' >
+                   <select onChange={handleLocale} id='landDropDown' className='language-dropDown' >
                      {
                        ['English','Hindi','Tamil'].map((key)=>(
                           <option value={key}>{key}</option>
@@ -60,7 +63,7 @@ export default function Home()
               </Grid>
            </Grid>
           </IntlProvider> 
-         <MasterTable Masterdata={masterOrders} language={locale} /> {/*Calling master table */}
+         <Table data={masterOrders} language={locale} tableType='master' /> {/*Calling master table */}
         </Grid></>: <Loader/>
       }   
     </div>

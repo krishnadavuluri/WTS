@@ -13,23 +13,33 @@ export const LangMessage={
         completionPercentage:'Completion Percentage',
         orderDetails:'Order Details',
         processProgress:'Order Continuance',
-        error:'Has no issues'
+        mostSpent:'Most Spent',
+        reset:'reset',
+        error:'Has no issues',
+        masterOrder:'Master Orders',
+        leastSpent:'Least Spent',
+        exceededCost:'Exceeded Cost',
     },
     Hindi:{
         open:'खुला',
         close:'बंद',
         show:'प्रदर्शन',
+        reset:'रीसेट',
         page:'पृष्ठ',
+        mostSpent:'अधिक खर्च',
         of:'का',
         goTo:'जाओ',
+        leastSpent:'कम खर्च',
         costStatus:'लागत की स्थिति',
+        exceededCost:'अधिक लागत',
         language:'भाषा',
         actCost:'वास्तविक लागत',
         estCost:'अनुमानित लागत',
         completionPercentage:'पूरा होने का प्रतिशत',
         orderDetails:'ऑर्डर का विवरण',
         processProgress:'आदेश निरंतरता',
-        error:'कोई मुद्दा नहीं है'
+        error:'कोई मुद्दा नहीं है',
+        masterOrder:'मास्टर आदेश'
     },
     Tamil:
     {
@@ -46,6 +56,11 @@ export const LangMessage={
         completionPercentage:'நிறைவு சதவீதம்',
         orderDetails:'விவரங்கள்',
         processProgress:'முன்னேற்றம்',
-        error:'எந்த சிக்கலும் இல்லை'
+        error:'எந்த சிக்கலும் இல்லை',
+        masterOrder:'முதன்மை ஆர்டர்கள்',
+        exceededCost:'செலவு மீறியது',
+        leastSpent:'குறைந்தது செலவு',
+        mostSpent:'அதிக செலவு',
+        reset:'மீட்டமை'
     }
 }

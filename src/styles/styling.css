@@ -53,8 +53,10 @@
     height: 34px;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin:10px;
+}
+.Button:checked{
+    background-color: blue;
 }
 .font
 {

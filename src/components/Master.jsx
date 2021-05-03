@@ -7,6 +7,7 @@ import { TopNavbar } from './Navbar';
 import axios from 'axios';
 import Loader from './loader';
 import { AlertDismissibleExample } from './alertBox';
+import { Table } from './Table';
  const Master = ({match}) => {
     const [itemData,setItemData]=useState([]);
     const [flag,setFlag]=useState(false);
@@ -27,7 +28,7 @@ import { AlertDismissibleExample } from './alertBox';
              flag ? itemData.length===0 ? <AlertDismissibleExample language={match.params.lang} from="home" id={match.params.mwoId} />:<><TopNavbar/>
              <MasterCount data={itemData} language={match.params.lang}/>
              <MasterCost data={itemData} language={match.params.lang}/>         
-             <ItemTable ItemsData={itemData} mwoId={match.params.mwoId} language={match.params.lang}/></>:<Loader/>
+             <Table data={itemData} mwoId={match.params.mwoId} language={match.params.lang} tableType='item'/></>:<Loader/>
             // { {itemData.length}===0 ? <AlertDismissibleExample/>:<>
             // <TopNavbar/>
             // <MasterCount data={ItemData}/>

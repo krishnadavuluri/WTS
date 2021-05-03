@@ -5,10 +5,12 @@ import Grid from '@material-ui/core/Grid';
 import '../../styles/styling.css';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { LangMessage } from '../../locale/locale';
+import { TestChart } from '../TestChart';
 function MasterCountChart({data,noOfItems,language})
 {
     var height=150;                 //default height
     const width=window.innerWidth;        //getting width of screen
+    console.log('Data:',data);
     console.log(language);
     if(width<=640)
     {
@@ -16,6 +18,12 @@ function MasterCountChart({data,noOfItems,language})
     }
     else if(width>640){
        height=20*noOfItems;
+    }
+    const options={
+         responsive: true,
+        //  onClick:(evt)=>{
+        //     console.log(evt)
+        // }
     }
     return (
     <Grid container justify='center'>
@@ -26,7 +34,8 @@ function MasterCountChart({data,noOfItems,language})
                   <FormattedMessage id='completionPercentage' value={language}/>
                   </IntlProvider>
               </h3>
-              <Polar data={data} height={height}  options={{ responsive: true }}/>    {/* calling count chart */}
+              <Polar id="Polar" data={data} height={height}  options={ options }/>
+              {/* <TestChart/> */}
            </MDBContainer>
         </Grid>
     </Grid>  

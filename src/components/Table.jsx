@@ -7,15 +7,14 @@ import { MultiLanguageTableColumn } from './TableDataColumn/columnFormat';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
 
-export function MasterTable({Masterdata,language}) 
+export function Table(props) 
 {
 
     const unsortColumnName=['COST','COUNT','लागत','गिनती','செலவு','எண்ணிக்கை'];
-    const tableColumn=MultiLanguageTableColumn[language];
-    console.log(tableColumn,language)
+    const tableColumn=MultiLanguageTableColumn[props.language];
     const column=useMemo(()=>tableColumn,[tableColumn]);
-    const data=useMemo(()=>Masterdata,[Masterdata]);
-    const tableInstance=useTable({columns:column,data:data},useSortBy,usePagination); // specifying data,comlumn and options used in table
+    const TableData=useMemo(()=>props.data,[props.data]);
+    const tableInstance=useTable({columns:column,data:TableData},useSortBy,usePagination); // specifying data,comlumn and options used in table
     
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,  //extracting all props from table instance
         canPreviousPage,nextPage,pageOptions,state,setPageSize,previousPage}=tableInstance;
@@ -23,12 +22,25 @@ export function MasterTable({Masterdata,language})
     const {pageIndex,pageSize}=state; //To keep track of current page and page size
     
     const getId=(id)=>{
-        window.location.href="#/mwo/"+id+'/lang/'+language; // function takes Master View  
+
+        if(props.tableType==='master')
+        {
+            window.location.href="#/mwo/"+id+'/lang/'+props.language; // function takes Master View 
+        }
+        else{
+            window.location.href=`#/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language  //Taking to Item view
+        } 
       }    
     
     return (
         <>
-        <table {...getTableProps()} className="responsive-card-table unstriped">
+        <IntlProvider locale={props.language} messages={LangMessage[props.language]}>
+            <h3 style={{marginTop:'20px'}}>
+              {props.tableType==='item' ? <FormattedMessage id='orderDetails' value={props.language}/>:
+                                          <FormattedMessage id='masterOrder' value={props.language} />}
+            </h3>
+        </IntlProvider>
+        <table {...getTableProps()} className="responsive-card-table unstriped item-table">
             <thead>
                 {
                     headerGroups.map((headerGroup)=>(
@@ -64,9 +76,9 @@ export function MasterTable({Masterdata,language})
             </tbody>
         </table>
         <div>
-         <IntlProvider locale={language} messages={LangMessage[language]}>
+         <IntlProvider locale={props.language} messages={LangMessage[props.language]}>
             <span>
-                <label id='show'><FormattedMessage id='show' value={language}/></label>{' '}
+                <label id='show'><FormattedMessage id='show' value={props.language}/></label>{' '}
                 <select className='dropDown' id='show' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
                    {
                    [10,15,20,50].map(pageSize=>(
@@ -76,13 +88,13 @@ export function MasterTable({Masterdata,language})
                 </select>
             </span>{'  '}
               <span>
-                  <FormattedMessage id='page' value={language}/>{' '}
+                  <FormattedMessage id='page' value={props.language}/>{' '}
                   <strong>
-                     {pageIndex+1} <FormattedMessage id='of' value={language}/> {pageOptions.length}
+                     {pageIndex+1} <FormattedMessage id='of' value={props.language}/> {pageOptions.length}
                   </strong>{' '}
               </span>
               
-                   | <FormattedMessage id='goTo' value={language}/>{' '}
+                   | <FormattedMessage id='goTo' value={props.language}/>{' '}
                    <input  className='Go-to-page' type='text' 
                    onChange={(e)=>{
                        const pageNumber= e.target.value ? Number(e.target.value)-1: 0

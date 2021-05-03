@@ -36,9 +36,14 @@ export default class MasterCount  extends React.Component{
     {
         return(
             <div className='defaultMargin'>
-                {this.state.flag ?  <MasterCountChart language={this.props.language} 
-                                     noOfItems={this.props.data.length}  
-                                     data={this.state.countData} /> : ''}
+                {this.state.flag ? 
+                 <>
+                 <MasterCountChart language={this.props.language} 
+                                   noOfItems={this.props.data.length}  
+                                   data={this.state.countData} /> 
+                 <button className='Button'>{'<'}</button>
+                 <button className='Button'>{'>'}</button>   
+                 </>: ''}
             </div>
         );
     }
