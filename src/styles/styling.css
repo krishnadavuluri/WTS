@@ -24,11 +24,6 @@
     overflow-x: hidden;
 }
 
-@media screen and (max-width:760px) {
-    .over-flow-x{
-        overflow-x: scroll;
-    }
-}
 .time-line-styling{
     border-top: 4px solid #737578;
     border-left: 4px solid #737578;
@@ -36,6 +31,11 @@
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
+}
+.CountChartBox{
+    height: 580px;
+    overflow-y: scroll;
+    text-align: center;
 }
 .defaultMargin{
     margin-bottom: 10px;
@@ -55,8 +55,17 @@
     padding-right: 30px;
     margin:10px;
 }
+
+@media all and (max-width: 550px){
+   .CountChartBox{
+       height:450px;
+   }
+}
 .Button:checked{
     background-color: blue;
+}
+.Button:disabled{
+    background-color: #e1ff7b;
 }
 .font
 {
@@ -66,3 +75,4 @@
     margin-right: 10px;
     border: '1px solid black';
 }
+
