@@ -4,11 +4,6 @@ export const costChartOptions={
       type: 'bar',
       toolbar:{
           show:false
-      },
-      events:{
-        dataPointSelection:(e,cc,config)=>{
-            window.location.href="#/cost/"+config.w.config.xaxis.categories[config.dataPointIndex]
-        }
       }
     },
     plotOptions: {

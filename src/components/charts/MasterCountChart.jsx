@@ -3,10 +3,8 @@ import { Polar} from "react-chartjs-2";
 import { MDBContainer }from "mdbreact";
 import Grid from '@material-ui/core/Grid';
 import '../../styles/styling.css';
-import { IntlProvider, FormattedMessage } from 'react-intl';
-import { LangMessage } from '../../locale/locale';
 import Service from '../../utils/service';
-function MasterCountChart({data,labels,number})
+function MasterCountChart({data,labels,number, mwoId,language})
 {
     var height=150;                 //default height
     const width=window.innerWidth;        //getting width of screen
@@ -39,14 +37,18 @@ function MasterCountChart({data,labels,number})
     <Grid container justify='center'>
         <Grid item xs={12} md={7}>
            <MDBContainer>
-               <Polar id="Polar" data={Data} height={height}  options={ options }/>
+               <Polar id="Polar" data={Data} height={height}  options={ options }
+               onElementsClick={elem => {
+                   if(elem.length!==0)
+                   { 
+                       window.location.href=`#/mwo/${mwoId}/item/${elem[0]._model.label}/lang/`+language;
+                   }
+               }}/>
             </MDBContainer>  
         </Grid>
         
     </Grid>
-             
-         
-      
+                     
     );
 }
 export default MasterCountChart;
