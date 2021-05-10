@@ -15,7 +15,7 @@ function MasterCountChart({data,labels,number, mwoId,language})
             {                                  
                 data:data,
                 backgroundColor:colors,
-                label:'Hello'
+                label:'Chart Labels'
             }],
             labels:labels
      }

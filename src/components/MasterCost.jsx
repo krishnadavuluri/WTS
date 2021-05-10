@@ -22,7 +22,7 @@ export default class MasterCost extends Component
             least:false,
             most:false,
             more:false,
-            reset:false
+            sort:false
         }
         this.setData=this.setData.bind(this);
     }
@@ -40,37 +40,40 @@ export default class MasterCost extends Component
             NoOfItems+=1
         })
         this.setState({noOfItems:NoOfItems,itemsActualCost:actCost,itemsEstimatedCost:estCost,
-            itemsId:ItemsId,flag:true,type:'',more:false,least:false,most:false,reset:true}) // setting state
+            itemsId:ItemsId,flag:true,type:'',more:false,least:false,most:false,sort:false}) // setting state
 
     }
     handleChange=(e)=>{
-        if(e.target.name==='reset')
+        if(e.target.name==='sort')
         {
-           //console.log('Called:',e.target.name);
-           this.setData();
+            const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
+                this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
+//console.log("from service:",actCost,estCost,itemsIds)
+           this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
+           itemsId:itemsIds,type:e.target.name,more:false,least:false,most:false,sort:true})
         }
         else if(e.target.name==='more')
         {
-            const exceededCostItems=Utils.getExceededCost(this.state.itemsActualCost,
-                                            this.state.itemsEstimatedCost,this.state.itemsId);
+            const exceededCostItems=Utils.Filter(this.state.itemsActualCost,
+                                            this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
             //console.log('Exeeced Value:',exceededCostItems);
             this.setState({exceededCostItems:exceededCostItems,type:e.target.name,
-                more:true,least:false,most:false,reset:false})
+                more:true,least:false,most:false,sort:false})
         }
         else if(e.target.name==='least')
         {
           // console.log('Called:',e.target.name)
-           const {actCost,estCost,itemsIds}= Utils.Sort(this.state.itemsActualCost,
+           const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
                                              this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
            //console.log("from service:",actCost,estCost,itemsIds)
            this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
-                          itemsId:itemsIds,type:e.target.name,more:false,least:true,most:false,reset:false})
+                          itemsId:itemsIds,type:e.target.name,more:false,least:true,most:false,sort:false})
         }
         else{
-            const {actCost,estCost,itemsIds}= Utils.Sort(this.state.itemsActualCost,
+            const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
                 this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
                 this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
-                    itemsId:itemsIds,type:e.target.name,more:false,least:false,most:true,reset:false})
+                    itemsId:itemsIds,type:e.target.name,more:false,least:false,most:true,sort:false})
         }    
     }
     componentDidMount()
@@ -108,9 +111,9 @@ export default class MasterCost extends Component
                                 </label>
                             </Grid>
                             <Grid item xs={12}   md={3}>
-                               <input onChange={this.handleChange} type='radio' id='reset' name='reset' checked={this.state.reset}/>
+                               <input onChange={this.handleChange} type='radio' id='sort' name='sort' checked={this.state.sort}/>
                                <label id='more'>
-                                   <FormattedMessage id='reset' value={this.props.language}/>
+                                   <FormattedMessage id='sort' value={this.props.language}/>
                                 </label>
                             </Grid>
                         </Grid>

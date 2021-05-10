@@ -14,7 +14,7 @@ export const LangMessage={
         orderDetails:'Order Details',
         processProgress:'Order Continuance',
         mostSpent:'Most Spent',
-        reset:'reset',
+        sort:'Sort',
         error:'Has no issues',
         masterOrder:'Master Orders',
         leastSpent:'Least Spent',
@@ -24,7 +24,7 @@ export const LangMessage={
         open:'खुला',
         close:'बंद',
         show:'प्रदर्शन',
-        reset:'रीसेट',
+        sort:'रीसेट',
         page:'पृष्ठ',
         mostSpent:'अधिक खर्च',
         of:'का',
@@ -61,6 +61,6 @@ export const LangMessage={
         exceededCost:'செலவு மீறியது',
         leastSpent:'குறைந்தது செலவு',
         mostSpent:'அதிக செலவு',
-        reset:'மீட்டமை'
+        sort:'மீட்டமை'
     }
 }

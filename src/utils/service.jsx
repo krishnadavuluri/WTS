@@ -31,17 +31,53 @@ export default class Utils
          }
          return {actCost:ActCost,estCost:EstCost,itemIds:ItemIds}
     }
-    static Sort(actCost,estCost,itemIds,type)
+    static Filter(actCost,estCost,itemIds,type)
     {
         
          if(type==='least')
          {
              return Utils.leastSort(actCost,estCost,itemIds);
          }
-         else
+         else if(type==='most')
          {
              return Utils.maxSort(actCost,estCost,itemIds);
          }
+         else if(type==='more')
+         {
+             return Utils.getExceededCost(actCost,estCost,itemIds);
+         }
+         else
+         {
+             return Utils.sortById(actCost,estCost,itemIds);
+         }
+    }
+    static sortById(actCost,estCost,itemsIds)
+    {
+        while(true)
+        {
+           var flag=0;
+           for(let i=1;i<itemsIds.length;i++)
+           {
+               if(Number(itemsIds[ i-1 ])>Number(itemsIds[i]))
+               {
+                   flag=1;
+                   var temp=estCost[i-1];
+                   estCost[i-1]=estCost[i];
+                   estCost[i]=temp;
+                   temp=actCost[i-1];
+                   actCost[i-1]=actCost[i];
+                   actCost[i]=temp;
+                   temp=itemsIds[i-1];
+                   itemsIds[i-1]=itemsIds[i];
+                   itemsIds[i]=temp;
+               }
+           }
+           if(flag===0)
+           {
+               break;
+           }
+        }
+        return {actCost:actCost,estCost:estCost,itemsIds:itemsIds}
     }
    static leastSort(actCost,estCost,itemsIds)
     {

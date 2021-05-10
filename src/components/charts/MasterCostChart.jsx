@@ -38,7 +38,6 @@ export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsI
               style: {
                   fontSize:  '20',
                   fontWeight:  'bold',
-                  fontFamily:  undefined,
                   color:  'black'
              }
            }}
