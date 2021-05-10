@@ -9,6 +9,7 @@ import axios from 'axios';
 import { AlertDismissibleExample } from './alertBox';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { LangMessage } from '../locale/locale';
+import { TopNavbar } from './Navbar';
 class Item extends Component {
      constructor(props)
      {
@@ -50,26 +51,18 @@ class Item extends Component {
      componentDidMount()
      {
           this.getItemViewData(this.props.match.params.itemId);
+          
      }
 render() {
   return (
     <div>
-    { this.state.flag ? this.state.noOfProcess===0 ? <AlertDismissibleExample language={this.props.match.params.lang} from="item" id={this.props.match.params.mwoId}/>:
-      <MDBContainer>
-        <MDBModal isOpen={this.state.modal} size="fluid">        {/* Modal popup */}
-           <MDBModalHeader className="bg">Wallets</MDBModalHeader>
-           <MDBModalBody>
-               <ItemTimeProgressChart language={this.props.match.params.lang} data={this.state.processData} noOfProcess={this.state.noOfProcess} /> {/* Calling ItemChart */}
-           </MDBModalBody>
-           <MDBModalFooter>
-             <IntlProvider locale={this.props.match.params.lang} messages={LangMessage[this.props.match.params.lang]}>
-                   <button className="Button" onClick={this.props.history.goBack}>
-                     <FormattedMessage value={this.props.match.params.lang} id='close' />
-                   </button>
-             </IntlProvider>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
+    { this.state.flag ? this.state.noOfProcess===0 ? 
+
+       <AlertDismissibleExample language={this.props.match.params.lang} from="item" id={this.props.match.params.mwoId}/>:
+       <>
+         <TopNavbar/>
+         <ItemTimeProgressChart language={this.props.match.params.lang} data={this.state.processData} noOfProcess={this.state.noOfProcess} /> 
+       </>   
        :<Loader/> 
     }
     </div>

@@ -1,90 +1,111 @@
-import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from
-"mdbreact";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import '../styles/styling.css';
-class TabsJustified extends Component {
-state = {
-  activeItemJustified: "1"
+import { IntlProvider, FormattedMessage } from 'react-intl';
+import { LangMessage } from '../locale/locale';
+import MasterCount from './MasterCount';
+import MasterCost from './MasterCost';
+import { Table } from './Table';
+import { useHistory } from 'react-router-dom';
+import Service from '../utils/service';
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
-toggleJustified = tab => e => {
-  if (this.state.activeItemJustified !== tab) {
-    this.setState({
-      activeItemJustified: tab
-    });
-  }
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
-render() {
-    return (
-      <MDBContainer>
-        <MDBNav tabs className="nav-justified">
-          <MDBNavItem>
-            <MDBNavLink link to="#" active={this.state.activeItemJustified === "1"} onClick={this.toggleJustified("1")} role="tab" >
-               Profile
-            </MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink link to="#" active={this.state.activeItemJustified === "2"} onClick={this.toggleJustified("2")} role="tab" >
-               Follow
-            </MDBNavLink>
-          </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink link to="#" active={this.state.activeItemJustified === "3"} onClick={this.toggleJustified("3")} role="tab" >
-               Contact
-            </MDBNavLink>
-          </MDBNavItem>
-        </MDBNav>
-        <MDBTabContent
-          className="card"
-          activeItem={this.state.activeItemJustified}
-        >
-          <MDBTabPane tabId="1" role="tabpanel">
-            <p className="mt-2">
-              Raw denim you probably haven't heard of them jean shorts
-              Austin. Nesciunt tofu stumptown aliqua, retro synth master
-              cleanse. Mustache cliche tempor, williamsburg carles vegan
-              helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-              synth. Cosby sweater eu banh mi, qui irure terry richardson
-              ex squid. Aliquip placeat salvia cillum iphone. Seitan
-              aliquip quis cardigan american apparel, butcher voluptate
-              nisi qui.
-            </p>
-          </MDBTabPane>
-          <MDBTabPane tabId="2" role="tabpanel">
-            <p className="mt-2">
-              Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-              single-origin coffee squid. Exercitation +1 labore velit,
-              blog sartorial PBR leggings next level wes anderson artisan
-              four loko farm-to-table craft beer twee. Qui photo booth
-              letterpress, commodo enim craft beer mlkshk aliquip jean
-              shorts ullamco ad vinyl cillum PBR. Homo nostrud organic,
-              assumenda labore aesthetic magna delectus mollit. Keytar
-              helvetica VHS salvia yr, vero magna velit sapiente labore
-              stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
-              sustainable jean shorts beard ut DIY ethical culpa terry
-              richardson biodiesel. Art party scenester stumptown, tumblr
-              butcher vero sint qui sapiente accusamus tattooed echo park.
-            </p>
-          </MDBTabPane>
-          <MDBTabPane tabId="3" role="tabpanel">
-            <p className="mt-2">
-              Etsy mixtape wayfarers, ethical wes anderson tofu before
-              they sold out mcsweeney's organic lomo retro fanny pack
-              lo-fi farm-to-table readymade. Messenger bag gentrify
-              pitchfork tattooed craft beer, iphone skateboard locavore
-              carles etsy salvia banksy hoodie helvetica. DIY synth PBR
-              banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
-              Williamsburg banh mi whatever gluten-free, carles pitchfork
-              biodiesel fixie etsy retro mlkshk vice blog. Scenester cred
-              you probably haven't heard of them, vinyl craft beer blog
-              stumptown. Pitchfork sustainable tofu synth chambray yr.
-            </p>
-          </MDBTabPane>
-        </MDBTabContent>
-      </MDBContainer>
-    );
-  }
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
 }
 
-export default TabsJustified;
+function LinkTab(props) {
+  return (
+    <Tab style={{color:"black"}}
+      component="a"
+      onClick={(event) => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function NavTabs({mwoId,data,language,pageUrls}) {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  const history=useHistory();
+  console.log('History object',history.location.pathname);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed" style={{marginTop:'42px'}}>
+      <IntlProvider locale={language} messages={LangMessage[language]}>
+        <Tabs
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs example"
+          style={{backgroundColor:'#d9d8d7'}}
+          >
+          <LinkTab label={<FormattedMessage id='completion' value={language}/>} {...a11yProps(0)} />
+          <LinkTab label={<FormattedMessage id='cost' value={language}/>}  {...a11yProps(1)} />
+          <LinkTab label={<FormattedMessage id='orderDetails' value={language}/>} {...a11yProps(2)} />
+        </Tabs>
+       </IntlProvider> 
+      </AppBar>
+        {/*  */}
+        <TabPanel value={value} index={0}>
+          <MasterCount  data={data} language={language} mwoId={mwoId}/>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+           <MasterCost  data={data} language={language}/>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+           <Table 
+              data={data}
+              mwoId={mwoId}
+              language={language} 
+              tableType='item' />
+      </TabPanel>
+    </div>
+  );
+}

@@ -57,7 +57,7 @@ export default class MasterCount  extends React.Component{
             end+=partition;
             i+=1;
         }
-        console.log('count and labels',count,labels);
+       // console.log('count and labels',count,labels);
         this.setState({flag:true,itemsProgress:count,itemsLabel:labels,end:count.length})
     }
     render()
@@ -66,25 +66,26 @@ export default class MasterCount  extends React.Component{
             <div className='defaultMargin'>
                 <IntlProvider locale={this.props.language} messages={LangMessage[this.props.language]}>
                    <h3 style={{marginTop:'60px'}}>
-                       <FormattedMessage id='completionPercentage' value={this.props.language}/>
+                       <FormattedMessage id='completion' value={this.props.language}/>
                    </h3>
                 </IntlProvider>
                 {
                     this.state.flag? 
-                    <Grid container justify='center' >
-                        <Grid item justify='center' xs={12} sm={12}  className='CountChartBox' md={6} >
-                           <Grid container justify='center'>
-                                {
-                                  this.state.itemsProgress.map((value,index)=>(
+                        this.state.itemsProgress.map((value,index)=>(
+                            <Grid container justify='center'>
+                                <Grid xs={12} md={7}>
+                                       <MasterCountChart 
+                                        pageUrls={this.props.pageUrls}
+                                        mwoId={this.props.mwoId}
+                                        language={this.props.language} 
+                                        number={index+1}
+                                        data={this.state.itemsProgress[index]} 
+                                        labels={this.state.itemsLabel[index]}
+                                        />
+                                </Grid>
+                            </Grid>
                                   
-                                   <MasterCountChart mwoId={this.props.mwoId} language={this.props.language} number={index+1}
-                                   data={this.state.itemsProgress[index]} labels={this.state.itemsLabel[index]}
-                                   pageTracker={this.props.pageTracker} />
-                                  ))
-                               }   
-                           </Grid>
-                        </Grid>
-                    </Grid> :''   
+                        )):''   
                }
             </div>
         );

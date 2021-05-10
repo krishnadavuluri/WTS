@@ -7,19 +7,30 @@ import { Table } from './Table';
 import Loader from './loader';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
+import LanguageIcon from '@material-ui/icons/Language';
+import Service from '../utils/service';
 export default function Home()
 {
     const {register}=useForm();
+    
+    var pageUrls=['#/'];
+    var pageVisited=['Home'];
+    
     const [state,setState]=useState('opened');              //setting default state as 'opened'
+
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
+
     const [flag,setFlag]=useState(false)                  // setting flag
+
     const [locale,setLocale]=useState('English');
 
     const handleRadio1=(e)=>{
+
         setState(e.target.name);          // Handle radio button action
     }
 
     const handleLocale=(e)=>{
+
         setLocale(e.target.value);
     }
 
@@ -27,7 +38,7 @@ export default function Home()
         async function getData()
         {
             const {data}=await axios.get('http://183.82.116.164:5432/master_work/'+state);       //Api call for master orders based on state
-            console.log('All master Data',data)
+            //console.log('All master Data',data)
             setMasterOrders(data);
             setFlag(true);
         }
@@ -37,10 +48,11 @@ export default function Home()
     return(
     <div>
         {
-           flag ? <> {console.log('return is called')}
+           flag ? <>
         <Grid className='container-style'>
           <IntlProvider locale={locale} messages={LangMessage[locale]}>
            <Grid container className='bg'>
+               {/* State radio buttons */}
               <Grid item xs={6} style={{marginTop:'5px'}}>
                      <input id='openradio' checked={state==='opened'} ref={register} onChange={handleRadio1} type='radio' name='opened' />
                      <label className='text' style={{marginLeft:'3px'}} id='openradio'>
@@ -51,8 +63,9 @@ export default function Home()
                          <FormattedMessage id='close' values={{locale}}/>
                      </label>
               </Grid>
+              {/* Language selector */}
               <Grid item xs={6} style={{marginTop:'5px'}} >
-                   <label id='landDropDown' className='text'><FormattedMessage id='language' value={{locale}}/>{': '}</label>
+                   <LanguageIcon/>
                    <select onChange={handleLocale} id='landDropDown' className='language-dropDown' >
                      {
                        ['English','Hindi','Tamil'].map((key)=>(
@@ -64,7 +77,9 @@ export default function Home()
            </Grid>
           </IntlProvider> 
          <Table data={masterOrders} language={locale} tableType='master' /> {/*Calling master table */}
-        </Grid></>: <Loader/>
+        </Grid>
+        </>
+        : <Loader/>
       }   
     </div>
     );

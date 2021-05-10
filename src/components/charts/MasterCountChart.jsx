@@ -4,12 +4,13 @@ import { MDBContainer }from "mdbreact";
 import Grid from '@material-ui/core/Grid';
 import '../../styles/styling.css';
 import Service from '../../utils/service';
+import { useHistory } from 'react-router-dom';
 function MasterCountChart({data,labels,number, mwoId,language})
 {
+    const history=useHistory();
     var height=150;                 //default height
     const width=window.innerWidth;        //getting width of screen
     const colors=Service.colourGenerator(data.length);
-    console.log('Data:',data);
     if(width<=640)
     {
         height=40*10;              //setting height of chart with respect width of screen
@@ -30,18 +31,18 @@ function MasterCountChart({data,labels,number, mwoId,language})
          responsive: true,
          title: {
             display: true,
-            text: `Showing ${number}st part`
+            text: `${number}st part`
         }
     }
     return (
     <Grid container justify='center'>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={6}>
            <MDBContainer>
                <Polar id="Polar" data={Data} height={height}  options={ options }
                onElementsClick={elem => {
                    if(elem.length!==0)
                    { 
-                       window.location.href=`#/mwo/${mwoId}/item/${elem[0]._model.label}/lang/`+language;
+                       history.push(`/mwo/${mwoId}/item/${Number(elem[0]._model.label)}/lang/`+language)
                    }
                }}/>
             </MDBContainer>  

@@ -1,31 +1,33 @@
 import React,{useMemo} from 'react'
 import {useTable,useSortBy,usePagination} from 'react-table';
 import '../styles/table.css'; 
+import '../styles/styling.css'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 import { MultiLanguageTableColumn } from './TableDataColumn/columnFormat';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
-
+import { useHistory } from 'react-router-dom';
 export function Table(props) 
 {
-
+    const history=useHistory();
     const unsortColumnName=['COST','COUNT','लागत','गिनती','செலவு','எண்ணிக்கை'];
     const tableColumn=MultiLanguageTableColumn[props.language];
     const column=useMemo(()=>tableColumn,[tableColumn]);
     const TableData=useMemo(()=>props.data,[props.data]);
     const tableInstance=useTable({columns:column,data:TableData},useSortBy,usePagination); // specifying data,comlumn and options used in table
-    
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,  //extracting all props from table instance
         canPreviousPage,nextPage,pageOptions,state,setPageSize,previousPage}=tableInstance;
     
     const {pageIndex,pageSize}=state; //To keep track of current page and page size
-    
+    const obj={name:'krishna',rollNo:'17cs127'};
     const getId=(id)=>{
 
         if(props.tableType==='master')
         {
-            window.location.href="#/mwo/"+id+'/lang/'+props.language; // function takes Master View 
+            history.push("/mwo/"+id+'/lang/'+props.language);
+            
+           // window.location.href="#/mwo/"+id+'/lang/'+props.language+'/obj/'+obj; // function takes Master View 
         }
         else{
             window.location.href=`#/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language  //Taking to Item view
@@ -35,7 +37,7 @@ export function Table(props)
     return (
         <>
         <IntlProvider locale={props.language} messages={LangMessage[props.language]}>
-            <h3 style={{marginTop:'20px'}}>
+            <h3 className='defaultMargin'>
               {props.tableType==='item' ? <FormattedMessage id='orderDetails' value={props.language}/>:
                                           <FormattedMessage id='masterOrder' value={props.language} />}
             </h3>

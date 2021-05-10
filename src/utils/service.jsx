@@ -1,8 +1,11 @@
 
 import { Colours } from '../styles/colours';
+
 export default class Service
 {
     static colour=Colours;
+    static pageUrls;
+    static pageVisited;
     static colourGenerator(length)
     {
         var colours=[];

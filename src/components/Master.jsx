@@ -1,36 +1,52 @@
-import React ,{useState,useEffect} from 'react'
-import MasterCount from './MasterCount';
-import ItemData from '../sampleJson/ItemData.json'
-import MasterCost from './MasterCost';
-import { ItemTable } from './ItemTable';
+import React  from 'react'
 import { TopNavbar } from './Navbar';
 import axios from 'axios';
 import Loader from './loader';
 import { AlertDismissibleExample } from './alertBox';
-import { Table } from './Table';
- const Master = ({match,history}) => {
-    const [itemData,setItemData]=useState([]);
-    const [flag,setFlag]=useState(false);
-    useEffect(()=>{
-      async function getItemData()
-      {
-          
-          const {data}=await axios.get('http://183.82.116.164:5432/7/master_view_data/'+match.params.mwoId); //setting master order data for change in user option
-          setItemData(data); 
-          setFlag(true);
-      }
-      getItemData();
-  },[]);
-    // Showing the master view
-    return (
-        <div>
+import NavTabs from './TabBar'
+import { useHistory } from 'react-router-dom';
+class  Master extends React.Component {
+    
+       state={
+         masterData:[],
+         flag:false
+       }
+
+       getMasterData= async ()=>{
+         console.log('Object in Url',this.props.match.params.obj)
+        const id=this.props.match.params.mwoId;
+        const {data}=await axios.get('http://183.82.116.164:5432/7/master_view_data/'+id); //setting master order data for change in user option
+        this.setState({masterData:data,flag:true});
+       }  
+
+       componentDidMount()
+       {
+         this.getMasterData();
+       }
+
+    render()
+    {
+       return (
+          <div>
           { 
-             flag ? itemData.length===0 ? <AlertDismissibleExample language={match.params.lang} from="home" id={match.params.mwoId} />:<><TopNavbar/>
-             <MasterCount  data={itemData} mwoId={match.params.mwoId} language={match.params.lang}/>
-             <MasterCost data={itemData} language={match.params.lang}/>         
-             <Table data={itemData} mwoId={match.params.mwoId} language={match.params.lang} tableType='item'/></>:<Loader/>
+             this.state.flag ? this.state.masterData.length===0 ? 
+             <AlertDismissibleExample language={this.props.match.params.lang} from="home" id={this.props.match.params.mwoId} />:
+             <>
+             <TopNavbar />
+             <NavTabs 
+              data={this.state.masterData} 
+              mwoId={this.props.match.params.mwoId}
+              language={this.props.match.params.lang}
+              />
+             </>
+             :
+             <>
+             <TopNavbar/>
+             <Loader/>
+             </>
           }
-        </div>
-    )
+          </div>
+         )
+    }
 }
 export default Master;
