@@ -1,11 +1,5 @@
 //Required options of charts.
 export const costChartOptions={
-    chart: {
-      type: 'bar',
-      toolbar:{
-          show:false
-      }
-    },
     plotOptions: {
       bar: {
         horizontal: true,

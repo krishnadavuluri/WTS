@@ -1,7 +1,7 @@
 
 import { Colours } from '../styles/colours';
 
-export default class Service
+export default class Utils
 {
     static colour=Colours;
     static pageUrls;
@@ -11,7 +11,7 @@ export default class Service
         var colours=[];
         for(let i=0;i<length;i++)
         {
-            colours=[...colours,Service.colour[Math.floor(Math.random()*Service.colour.length)]];
+            colours=[...colours,Utils.colour[Math.floor(Math.random()*Utils.colour.length)]];
         }
         return colours;
     }
@@ -36,11 +36,11 @@ export default class Service
         
          if(type==='least')
          {
-             return Service.leastSort(actCost,estCost,itemIds);
+             return Utils.leastSort(actCost,estCost,itemIds);
          }
          else
          {
-             return Service.maxSort(actCost,estCost,itemIds);
+             return Utils.maxSort(actCost,estCost,itemIds);
          }
     }
    static leastSort(actCost,estCost,itemsIds)
@@ -71,6 +71,50 @@ export default class Service
         }
         return {actCost:actCost,estCost:estCost,itemsIds:itemsIds}
     }
+    static getCountChartHeight(screenWidth)
+    {
+        var height;
+        if(screenWidth<=640)
+        {
+            height=40*10;              //setting height of chart with respect width of screen
+        }
+        else if(screenWidth>640){
+           height=35*10;
+        }
+        return height;
+    }
+    static getCostChartHeight(noOfItems,screenWidth)
+    {
+        var height;
+        if(screenWidth<=640)
+        {
+            height=55*noOfItems;   //setting height of chart with respect width of screen
+        }
+        else if(screenWidth>640){
+            height=65*noOfItems;
+        }
+        return height
+    }
+    static getCostChartHeading(type)
+    {
+        var chartHeading;
+        if(type==='more')
+        {
+           chartHeading='Exceeded Cost Items'
+        }
+        else if(type==='least')
+        {
+          chartHeading='Least Spent Items' 
+        }
+        else if(type==='most')
+        {
+          chartHeading='Most Spent Items' 
+        }
+        else{
+            chartHeading='';
+        }
+        return chartHeading
+    }
     static maxSort(actCost,estCost,itemsIds)
     {
 
@@ -99,6 +143,5 @@ export default class Service
            }
         }
         return {actCost:actCost,estCost:estCost,itemsIds:itemsIds}
-
     }
 }

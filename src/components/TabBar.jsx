@@ -97,7 +97,7 @@ export default function NavTabs({mwoId,data,language,pageUrls}) {
           <MasterCount  data={data} language={language} mwoId={mwoId}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-           <MasterCost  data={data} language={language}/>
+           <MasterCost mwoId={mwoId} data={data} language={language}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
            <Table 

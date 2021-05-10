@@ -24,7 +24,9 @@ option:hover{
 tr:nth-of-type(even) { 
 	background:white; 
 	}
-
+tr{
+	cursor: pointer;
+}
 th { 
 	background:#c8ff00; 
 	color: black; 
