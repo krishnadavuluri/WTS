@@ -1,3 +1,5 @@
+import {ganttChartOptions} from '../components/charts/chartOptions'
+import moment from 'moment';
 export class Destructure
 {
    static masterCompletionData(data)
@@ -45,5 +47,24 @@ export class Destructure
             NoOfItems+=1
         })
         return {actualCost:actCost,estimatedCost:estCost,itemsId:itemsId,noOfItems:NoOfItems}
+    }
+    static itemProgressData(data)
+    {
+        var allProcess=[ganttChartOptions]; //getting itemChart options
+        var noOfProcess=0;
+        
+        data.map((process)=>{
+            noOfProcess+=1;
+            const startDate=moment(process.startDate).format('l').split('/');
+            const endDate=moment(process.endDate).format('l').split('/'); // extracting required fields
+            if(endDate!==null)
+            {
+              const singleProcess=[process.id,"#"+process.id,null,new Date(startDate[2],startDate[0]-1,startDate[1]),
+              new Date(endDate[2],endDate[0]-1,endDate[1]),null,process.progress,null];
+              allProcess=[...allProcess,singleProcess]; 
+            }                    
+           })
+         
+         return {allProcess:allProcess,noOfProcess:noOfProcess}
     }
 }

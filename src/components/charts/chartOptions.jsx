@@ -29,7 +29,7 @@ export const costChartOptions={
       intersect: false,
     },
 };
-export const itemChartOptions=[
+export const ganttChartOptions=[
     { type: 'string', label: 'Task ID' },
     { type: 'string', label: 'Task Name' },
     { type: 'string', label: 'Resource' },
