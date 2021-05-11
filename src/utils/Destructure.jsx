@@ -31,4 +31,19 @@ export class Destructure
         }
         return {completion:count,labels:labels};
     }
+    static masterCostData(data)
+    {
+        const ItemsData=data;
+        var actCost=[];
+        var estCost=[];
+        var itemsId=[];
+        var NoOfItems=0;                                     //destructuring data
+        ItemsData.map((eachItme)=>{
+            actCost=[...actCost,eachItme.actualCost]
+            estCost=[...estCost,eachItme.estimatedCost]
+            itemsId=[...itemsId,""+eachItme.id]
+            NoOfItems+=1
+        })
+        return {actualCost:actCost,estimatedCost:estCost,itemsId:itemsId,noOfItems:NoOfItems}
+    }
 }

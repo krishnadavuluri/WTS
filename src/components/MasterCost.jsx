@@ -5,6 +5,7 @@ import '../styles/styling.css';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
 import Grid from '@material-ui/core/Grid';
+import { Destructure } from '../utils/Destructure';
 export default class MasterCost extends Component
 {
     constructor(props)
@@ -24,64 +25,52 @@ export default class MasterCost extends Component
             more:false,
             sort:false
         }
-        this.setData=this.setData.bind(this);
+       
     }
-    setData()
-    {
-        const ItemsData=this.state.actualData;
-        var actCost=[];
-        var estCost=[];
-        var ItemsId=[];
-        var NoOfItems=0;                                     //destructuring data
-        ItemsData.map((eachItme)=>{
-            actCost=[...actCost,eachItme.actualCost]
-            estCost=[...estCost,eachItme.estimatedCost]
-            ItemsId=[...ItemsId,""+eachItme.id]
-            NoOfItems+=1
-        })
-        this.setState({noOfItems:NoOfItems,itemsActualCost:actCost,itemsEstimatedCost:estCost,
-            itemsId:ItemsId,flag:true,type:'',more:false,least:false,most:false,sort:false}) // setting state
+    setData=()=>{
+        const {actualCost,estimatedCost,itemsId,noOfItems}=Destructure.masterCostData(this.state.actualData);
+        
+        this.setState({noOfItems:noOfItems,itemsActualCost:actualCost,itemsEstimatedCost:estimatedCost,
+            itemsId:itemsId,flag:true,type:'',more:false,least:false,most:false,sort:false}) 
 
     }
     handleChange=(e)=>{
-        if(e.target.name==='sort')
-        {
-            const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
-                this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
-//console.log("from service:",actCost,estCost,itemsIds)
-           this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
-           itemsId:itemsIds,type:e.target.name,more:false,least:false,most:false,sort:true})
-        }
-        else if(e.target.name==='more')
+        if(e.target.name==='more')
         {
             const exceededCostItems=Utils.Filter(this.state.itemsActualCost,
                                             this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
-            //console.log('Exeeced Value:',exceededCostItems);
+    
             this.setState({exceededCostItems:exceededCostItems,type:e.target.name,
                 more:true,least:false,most:false,sort:false})
         }
-        else if(e.target.name==='least')
+        else
         {
-          // console.log('Called:',e.target.name)
-           const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
-                                             this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
-           //console.log("from service:",actCost,estCost,itemsIds)
-           this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
-                          itemsId:itemsIds,type:e.target.name,more:false,least:true,most:false,sort:false})
+            const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,this.state.itemsEstimatedCost,
+                                              this.state.itemsId,e.target.name);
+            if(e.target.name==='sort')
+            {
+                this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,itemsId:itemsIds,type:e.target.name,
+                              more:false,least:false,most:false,sort:true})
+            } 
+            else if(e.target.name==='most')
+            {
+                this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,itemsId:itemsIds,type:e.target.name,
+                              more:false,least:false,most:true,sort:false})
+            }
+            else
+            {
+                this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost, itemsId:itemsIds,type:e.target.name,
+                              more:false,least:true,most:false,sort:false})
+            }                                 
+
         }
-        else{
-                const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
-                this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
-                this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
-                    itemsId:itemsIds,type:e.target.name,more:false,least:false,most:true,sort:false})
-        }    
     }
     componentDidMount()
     {
         this.setData();
     }
     render(){
-        // console.log(this.state.itemsActualCost);
+       
         return(
             <div>
                { this.state.flag ? <>
