@@ -38,7 +38,6 @@ export default function Home()
         async function getData()
         {
             const {data}=await axios.get('http://183.82.116.164:5432/master_work/'+state);       //Api call for master orders based on state
-            //console.log('All master Data',data)
             setMasterOrders(data);
             setFlag(true);
         }

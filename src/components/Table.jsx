@@ -20,14 +20,12 @@ export function Table(props)
         canPreviousPage,nextPage,pageOptions,state,setPageSize,previousPage}=tableInstance;
     
     const {pageIndex,pageSize}=state; //To keep track of current page and page size
-    const obj={name:'krishna',rollNo:'17cs127'};
+   
     const getId=(id)=>{
 
         if(props.tableType==='master')
         {
-            history.push("/mwo/"+id+'/lang/'+props.language);
-            
-           // window.location.href="#/mwo/"+id+'/lang/'+props.language+'/obj/'+obj; // function takes Master View 
+            history.push("/mwo/"+id+'/lang/'+props.language); 
         }
         else{
             window.location.href=`#/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language  //Taking to Item view

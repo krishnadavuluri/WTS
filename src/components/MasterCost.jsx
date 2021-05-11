@@ -70,7 +70,7 @@ export default class MasterCost extends Component
                           itemsId:itemsIds,type:e.target.name,more:false,least:true,most:false,sort:false})
         }
         else{
-            const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
+                const {actCost,estCost,itemsIds}= Utils.Filter(this.state.itemsActualCost,
                 this.state.itemsEstimatedCost,this.state.itemsId,e.target.name);
                 this.setState({itemsActualCost:actCost,itemsEstimatedCost:estCost,
                     itemsId:itemsIds,type:e.target.name,more:false,least:false,most:true,sort:false})
