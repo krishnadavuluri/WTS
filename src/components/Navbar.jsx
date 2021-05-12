@@ -4,34 +4,43 @@ import React from 'react'
 import '../styles/styling.css';
 import Utils from '../utils/utils';
 import {withRouter,useHistory} from 'react-router-dom';
+import { Breadcrumbs, Typography,Link} from '@material-ui/core';
+
+const isNotPrevious=(url)=>{
+    return Utils.pageUrls[Utils.pageUrls.length-1]!==url;
+}
+
 const TopNavbar = (props) => {
     const history=useHistory();
-    if(Utils.pageUrls[Utils.pageUrls.length-1]!==props.location.pathname)
+    
+    if(isNotPrevious(props.location.pathname))
     {
         Utils.pageUrls=[...Utils.pageUrls,props.location.pathname];
     }
+
     const routeTo=(index,url)=>{
        Utils.pageUrls=Utils.pageUrls.slice(0,index);
        history.push(url);
     }
     return (
-        
         <div style={{marginBottom:'42px'}}>
-            {console.log('Render is called')}
             <Navbar collapseOnSelect expand="lg" className='bg' fixed="top">
-                <HomeIcon onClick={()=> window.location.href='#'+Utils.pageUrls[0]} />
-                {
-                    Utils.pageUrls.map((url,index)=>{
-                        if(index===Utils.pageUrls.length-1)
+                <HomeIcon className='HomeIcon' onClick={()=> window.location.href='#'+Utils.pageUrls[0]} />
+                <Breadcrumbs aria-label="breadcrumb">
+                   {
+                       Utils.pageUrls.map((url,index)=>{
+                        const pageName=url.split('/')[1];
+                        if(index===Utils.pageUrls.length-1 && index!==0)
                         {
-                           return  <button disabled={true} onClick={()=> routeTo(index,url)}>{index}</button>
+                            return   <Typography color="textPrimary">{pageName}</Typography>
                         }
-                        if(index!==0)
+                        else if(index!==0)
                         {
-                            return <button onClick={()=> routeTo(index,url)}>{index}</button>
+                            return  <Link color="inherit" onClick={()=> routeTo(index,url)}>{pageName}</Link>
                         }
-                    })
-                }   
+                        })
+                   }
+                </Breadcrumbs>
             </Navbar>
         </div>
     )

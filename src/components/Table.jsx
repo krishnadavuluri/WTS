@@ -27,11 +27,12 @@ export function Table(props)
         {
             // Utils.pageUrls=[...Utils.pageUrls,"/mwo/"+id+'/lang/'+props.language];
             // Utils.pageVisited=[...Utils.pageVisited,'Master']
-            history.push("/mwo/"+id+'/lang/'+props.language); 
+            history.push("/Master/mwo/"+id+'/lang/'+props.language); 
            
         }
         else{
-            window.location.href=`#/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language  //Taking to Item view
+            
+            history.push(`/Item/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language)
         } 
       }    
     

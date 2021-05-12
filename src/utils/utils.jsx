@@ -4,8 +4,8 @@ import { Colours } from '../styles/colours';
 export default class Utils
 {
     static colour=Colours;
-    static pageUrls;
-    static pageVisited;
+    static pageUrls=['/'];
+    static currentTab=0;
     static colourGenerator(length)
     {
         var colours=[];

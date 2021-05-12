@@ -24,7 +24,7 @@ export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsI
             dataPointSelection: function(event, chartContext, config)
              {
                const id=Number(config.w.globals.labels[config.dataPointIndex]);
-               history.push(`/mwo/${mwoId}/item/`+id+'/lang/'+language);
+               history.push(`/Item/mwo/${mwoId}/item/`+id+'/lang/'+language);
              }
           }
         },

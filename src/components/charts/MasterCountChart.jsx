@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 function MasterCountChart({data,labels,number, mwoId,language})
 {
     const history=useHistory();
-    
     var chartHeight=Utils.getCountChartHeight(window.innerWidth);                 
     const colors=Utils.colourGenerator(data.length);
     const Data={
@@ -35,7 +34,7 @@ function MasterCountChart({data,labels,number, mwoId,language})
                onElementsClick={elem => {
                    if(elem.length!==0)
                    {   
-                       history.push(`/mwo/${mwoId}/item/${Number(elem[0]._model.label)}/lang/`+language)
+                       history.push(`/Item/mwo/${mwoId}/item/${Number(elem[0]._model.label)}/lang/`+language)
                    }
                }}/>
             </MDBContainer>  
