@@ -8,32 +8,22 @@ import Loader from './loader';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
-import Service from '../utils/service';
+import Utils from '../utils/utils';
 export default function Home()
 {
+
     const {register}=useForm();
-    
-    var pageUrls=['#/'];
-    var pageVisited=['Home'];
-    
+    Utils.pageUrls=['/'];
     const [state,setState]=useState('opened');              //setting default state as 'opened'
-
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
-
     const [flag,setFlag]=useState(false)                  // setting flag
-
     const [locale,setLocale]=useState('English');
-
     const handleRadio1=(e)=>{
-
         setState(e.target.name);          // Handle radio button action
     }
-
     const handleLocale=(e)=>{
-
         setLocale(e.target.value);
     }
-
     useEffect(()=>{
         async function getData()
         {

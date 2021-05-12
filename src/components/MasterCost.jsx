@@ -1,6 +1,6 @@
 import React ,{ Component} from 'react';
 import { MasterCostChart } from './charts/MasterCostChart';
-import Utils from '../utils/service';
+import Utils from '../utils/utils';
 import '../styles/styling.css';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../locale/locale';

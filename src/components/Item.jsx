@@ -4,8 +4,9 @@ import ItemTimeProgressChart from './charts/ItemProgessChart';
 import Loader from './loader';
 import axios from 'axios';
 import { AlertDismissibleExample } from './alertBox';
-import { TopNavbar } from './Navbar';
+import  TopNavbar  from './Navbar';
 import { Destructure } from '../utils/Destructure';
+import { StaticNav } from './staticNav';
 class Item extends Component {
      constructor(props)
      {
@@ -37,13 +38,14 @@ class Item extends Component {
 render() {
   return (
     <div>
-      <TopNavbar/>
+       
        { this.state.flag ? this.state.noOfProcess===0 ? 
          <AlertDismissibleExample language={this.props.match.params.lang} from="item" id={this.props.match.params.mwoId}/>:
          <>
+         <TopNavbar/>
          <ItemTimeProgressChart language={this.props.match.params.lang} data={this.state.processData} noOfProcess={this.state.noOfProcess} /> 
          </>   
-         :<Loader/>
+         :<><StaticNav/><Loader/></>
        }
     </div>
     );

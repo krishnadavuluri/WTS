@@ -4,7 +4,7 @@ import '../../styles/styling.css';
 import { MDBContainer } from 'mdbreact';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
-import Utils from '../../utils/service'
+import Utils from '../../utils/utils'
 import { costChartOptions } from './chartOptions';
 import { LangMessage } from '../../locale/locale';
 export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsId,language,type})

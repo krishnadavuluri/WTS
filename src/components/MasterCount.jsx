@@ -22,6 +22,7 @@ export default class MasterCount  extends React.Component{
     }
     render()
     {
+
         return(
             <div className='defaultMargin'>
                 <IntlProvider locale={this.props.language} messages={LangMessage[this.props.language]}>
@@ -46,7 +47,7 @@ export default class MasterCount  extends React.Component{
                             </Grid>
                                   
                         )):''   
-               }
+                }
             </div>
         );
     }

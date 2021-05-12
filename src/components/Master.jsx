@@ -1,10 +1,11 @@
 import React  from 'react'
-import { TopNavbar } from './Navbar';
+import  TopNavbar  from './Navbar';
 import axios from 'axios';
 import Loader from './loader';
 import { AlertDismissibleExample } from './alertBox';
 import NavTabs from './TabBar/TabBar'
 import { useHistory } from 'react-router-dom';
+import { StaticNav } from './staticNav';
 class  Master extends React.Component {
     
        state={
@@ -27,18 +28,20 @@ class  Master extends React.Component {
     {
        return (
           <div>
-             <TopNavbar/>
              { 
-                this.state.flag ? this.state.masterData.length===0 ? 
+               this.state.flag ? this.state.masterData.length===0 ? 
                 <AlertDismissibleExample language={this.props.match.params.lang} from="home" 
                id={this.props.match.params.mwoId} />:
                 <>
+                 <TopNavbar/>
                  <NavTabs 
                   data={this.state.masterData} 
                   mwoId={this.props.match.params.mwoId}
                   language={this.props.match.params.lang}/>
              </>
-             :<Loader/>
+             :<> 
+             <StaticNav/>
+             <Loader/></>
           }
           </div>
          )

@@ -146,8 +146,8 @@ export default class Utils
         {
           chartHeading='Most Spent Items' 
         }
-        else{
-            chartHeading='';
+        else if(type==='sort'){
+            chartHeading='Sorted By Id';
         }
         return chartHeading
     }

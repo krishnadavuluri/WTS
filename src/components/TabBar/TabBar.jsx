@@ -9,6 +9,7 @@ import MasterCost from '../MasterCost';
 import { Table } from '../Table';
 import { useHistory } from 'react-router-dom';
 import { TabPanel,a11yProps , LinkTab ,useStyles} from './Tabs';
+import Utils from '../../utils/utils';
 export default function NavTabs({mwoId,data,language}) {
   
   const classes = useStyles();
@@ -18,7 +19,6 @@ export default function NavTabs({mwoId,data,language}) {
   const handleChange = (event, newValue) => {
         setValue(newValue);                      {/*Handle change in tab panel*/}
   };
-
   return (
     <div className={classes.root}>
       <AppBar position="fixed" style={{marginTop:'42px'}}>
