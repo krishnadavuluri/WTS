@@ -1,19 +1,19 @@
 import React, { Component,useState ,useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {useForm} from 'react-hook-form';
-import "../styles/styling.css";                //User home page
+import "../../styles/styling.css";                //User home page
 import axios from 'axios'
-import { Table } from './Table';
-import Loader from './loader';
+import { Table } from '../Table/Table';
+import Loader from '../Response/Loader';
 import {IntlProvider, FormattedMessage} from 'react-intl';
-import { LangMessage } from '../locale/locale';
+import { LangMessage } from '../../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
-import Utils from '../utils/utils';
+import Utils from '../../utils/utils';
 export default function Home()
 {
-
-    const {register}=useForm();
     Utils.pageUrls=['/'];
+    Utils.currentTab=0;
+    const {register}=useForm();
     const [state,setState]=useState('opened');              //setting default state as 'opened'
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
     const [flag,setFlag]=useState(false)                  // setting flag
@@ -65,7 +65,7 @@ export default function Home()
               </Grid>
            </Grid>
           </IntlProvider> 
-         <Table data={masterOrders} language={locale} tableType='master' /> {/*Calling master table */}
+         <Table data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
         </Grid>
         </>
         : <Loader/>

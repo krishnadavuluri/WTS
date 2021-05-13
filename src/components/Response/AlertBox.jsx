@@ -3,11 +3,10 @@ import Alert from 'react-bootstrap/Alert';
 import { useHistory } from "react-router-dom";
 import Grid  from '@material-ui/core/Grid';
 import { IntlProvider, FormattedMessage } from 'react-intl';
-import { LangMessage } from '../locale/locale';
+import { LangMessage } from '../../locale/locale';
 export function AlertDismissibleExample({language,from,id}) {
     const [show, setShow] = useState(true);
     const history=useHistory();
-    console.log('eeroe is called')
     if (show) {
         return (
             <Grid container justify='center' style={{marginTop:'330px'}}>

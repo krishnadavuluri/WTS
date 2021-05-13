@@ -5,9 +5,9 @@ import { MDBContainer } from 'mdbreact';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
 import Utils from '../../utils/utils'
-import { costChartOptions } from './chartOptions';
+import { costChartOptions } from './ChartOptions';
 import { LangMessage } from '../../locale/locale';
-export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsId,language,type})
+export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsId,language,type,state})
 {
        const actualCostLabel=LangMessage[language].actCost;
        const estimatedCostLabel=LangMessage[language].estCost;
@@ -21,11 +21,13 @@ export function MasterCostChart({mwoId,noOfItems,actualCost,estimatedCost,itemsI
               show:false
           },
           events: {
-            dataPointSelection: function(event, chartContext, config)
-             {
+            dataPointSelection: function(event, chartContext, config){
                const id=Number(config.w.globals.labels[config.dataPointIndex]);
-               history.push(`/Item/mwo/${mwoId}/item/`+id+'/lang/'+language);
-             }
+               history.push(`/Item/mwo/${mwoId}/item/`+id+'/lang/'+language+'/state/'+state);
+             },
+             dataPointMouseEnter: function(event) {
+              event.path[0].style.cursor = "pointer";
+            }
           }
         },
        }

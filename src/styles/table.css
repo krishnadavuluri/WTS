@@ -117,3 +117,7 @@ only screen and (max-width: 760px),
 	background-color:  #e1ff7b;
 	border: 1px solid black;
 }
+.singleItemTable
+{
+	margin-top: 60px;
+}

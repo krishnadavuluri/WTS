@@ -3,14 +3,14 @@ import {AppBar,Tabs} from '@material-ui/core';
 import '../../styles/styling.css';
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import { LangMessage } from '../../locale/locale';
-import MasterCount from '../MasterCount';
-import MasterCost from '../MasterCost';
-import { Table } from '../Table';
+import MasterCount from '../Main/MasterCount';
+import MasterCost from '../Main/MasterCost';
+import { Table } from '../Table/Table';
 import { useHistory } from 'react-router-dom';
 import { TabPanel,a11yProps , LinkTab ,useStyles} from './Tabs';
 import Navbar from 'react-bootstrap/Navbar'
 import Utils from '../../utils/utils';
-export default function NavTabs({mwoId,data,language}) {
+export default function NavTabs({mwoId,data,language,state}) {
   
   const classes = useStyles();
   const [value, setValue] = React.useState(Utils.currentTab);
@@ -39,13 +39,14 @@ export default function NavTabs({mwoId,data,language}) {
       </AppBar>
 
         <TabPanel value={value} index={0}>
-          <MasterCount  data={data} language={language} mwoId={mwoId}/>
+          <MasterCount state={state}  data={data} language={language} mwoId={mwoId}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-           <MasterCost mwoId={mwoId} data={data} language={language}/> {/* Tab buttons*/}
+           <MasterCost state={state} mwoId={mwoId} data={data} language={language}/> {/* Tab buttons*/}
         </TabPanel>
         <TabPanel value={value} index={2}>
            <Table 
+              state={state}
               data={data}
               mwoId={mwoId}
               language={language} 

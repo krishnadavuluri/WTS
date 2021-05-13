@@ -1,11 +1,11 @@
 import React ,{ Component} from 'react';
-import { MasterCostChart } from './charts/MasterCostChart';
-import Utils from '../utils/utils';
-import '../styles/styling.css';
+import { MasterCostChart } from '../charts/MasterCostChart';
+import Utils from '../../utils/utils';
+import '../../styles/styling.css';
 import {IntlProvider, FormattedMessage} from 'react-intl';
-import { LangMessage } from '../locale/locale';
+import { LangMessage } from '../../locale/locale';
 import Grid from '@material-ui/core/Grid';
-import { Destructure } from '../utils/Destructure';
+import { Destructure } from '../../utils/Destructure';
 export default class MasterCost extends Component
 {
     constructor(props)
@@ -76,31 +76,35 @@ export default class MasterCost extends Component
                { this.state.flag ? <>
                 <IntlProvider locale={this.props.language} messages={LangMessage[this.props.language]} >
                   <div style={{marginTop:'40px'}}>
-                      <h3>
+                      <h3 className='font'>
                          <FormattedMessage id='cost' value={this.props.language}/>
                       </h3>
                       <Grid container justify='center' >
                         <Grid container xs={12} md={7} >
                             <Grid item xs={12}  md={3}>
-                               <input onChange={this.handleChange} type='radio' id='least' name='least' checked={this.state.least}/>
+                               <input onChange={this.handleChange} type='radio' id='least' name='least'
+                                checked={this.state.least} className='onHover'/>
                                <label id='least'> 
                                  <FormattedMessage id='leastSpent' value={this.props.language}/>
                                </label>
                             </Grid>
                             <Grid item xs={12}   md={3}>
-                               <input onChange={this.handleChange} type='radio' id='most' name='most' checked={this.state.most}/>
+                               <input onChange={this.handleChange} type='radio' id='most' name='most' 
+                               checked={this.state.most} className='onHover'/>
                                <label id='most'>
                                     <FormattedMessage id='mostSpent' value={this.props.language}/>
                                 </label>
                             </Grid>
                             <Grid item xs={12}   md={3}>
-                               <input onChange={this.handleChange} type='radio' id='more' name='more' checked={this.state.more}/>
+                               <input onChange={this.handleChange} type='radio' id='more' name='more' 
+                               checked={this.state.more} className='onHover'/>
                                <label id='more'> 
                                     <FormattedMessage id='exceededCost' value={this.props.language}/>
                                 </label>
                             </Grid>
                             <Grid item xs={12}   md={3}>
-                               <input onChange={this.handleChange} type='radio' id='sort' name='sort' checked={this.state.sort}/>
+                               <input onChange={this.handleChange} type='radio' id='sort' name='sort'
+                                checked={this.state.sort} className='onHover'/>
                                <label id='more'>
                                    <FormattedMessage id='sort' value={this.props.language}/>
                                 </label>
@@ -110,11 +114,13 @@ export default class MasterCost extends Component
                   </div>
                 </IntlProvider>
                 {this.state.type==='more'?
-                  <MasterCostChart language={this.props.language} actualCost={this.state.exceededCostItems.actCost}
+                  <MasterCostChart state={this.props.state} language={this.props.language}
+                  actualCost={this.state.exceededCostItems.actCost}
                   estimatedCost={this.state.exceededCostItems.estCost} itemsId={this.state.exceededCostItems.itemIds}
                   type={this.state.type} noOfItems={this.state.noOfItems} mwoId={this.props.mwoId}/>
                           :
-                  <MasterCostChart language={this.props.language} noOfItems={this.state.noOfItems}
+                  <MasterCostChart state={this.props.state} language={this.props.language}
+                  noOfItems={this.state.noOfItems}
                   actualCost={this.state.itemsActualCost} estimatedCost={this.state.itemsEstimatedCost}
                   itemsId={this.state.itemsId} type={this.state.type} mwoId={this.props.mwoId} />}</>: ""} 
             </div>

@@ -1,11 +1,11 @@
 import React  from 'react'
-import  TopNavbar  from './Navbar';
+import  TopNavbar  from '../NavBar/Navbar';
 import axios from 'axios';
-import Loader from './loader';
-import { AlertDismissibleExample } from './alertBox';
-import NavTabs from './TabBar/TabBar'
+import Loader from '../Response/Loader';
+import { AlertDismissibleExample } from '../Response/AlertBox';
+import NavTabs from '../TabBar/TabBar'
 import { useHistory } from 'react-router-dom';
-import { StaticNav } from './staticNav';
+import { StaticNav } from '../NavBar/StaticNavbar';
 class  Master extends React.Component {
     
        state={
@@ -15,7 +15,10 @@ class  Master extends React.Component {
 
        getMasterData= async ()=>{
         const id=this.props.match.params.mwoId;
-        const {data}=await axios.get('http://183.82.116.164:5432/7/master_view_data/'+id); //setting master order data for change in user option
+        const state=this.props.match.params.state;
+        console.log(id,state);
+        const {data}=await axios.get(`http://183.82.116.164:5432/7/master_view_data/${id}/${state}`); 
+        console.log(data)//setting master order data for change in user option
         this.setState({masterData:data,flag:true});
        }  
 
@@ -35,6 +38,7 @@ class  Master extends React.Component {
                 <>
                  <TopNavbar/>
                  <NavTabs 
+                  state={this.props.match.params.state}
                   data={this.state.masterData} 
                   mwoId={this.props.match.params.mwoId}
                   language={this.props.match.params.lang}/>

@@ -1,4 +1,4 @@
-import {ganttChartOptions} from '../components/charts/chartOptions'
+import {ganttChartOptions} from '../components/charts/ChartOptions'
 import moment from 'moment';
 export class Destructure
 {
@@ -59,7 +59,8 @@ export class Destructure
             const endDate=moment(process.endDate).format('l').split('/'); // extracting required fields
             if(endDate!==null)
             {
-              const singleProcess=[process.id,"#"+process.id,null,new Date(startDate[2],startDate[0]-1,startDate[1]),
+              const singleProcess=[process.id,"#"+process.title.slice(0,3),null,
+              new Date(startDate[2],startDate[0]-1,startDate[1]),
               new Date(endDate[2],endDate[0]-1,endDate[1]),null,process.progress,null];
               allProcess=[...allProcess,singleProcess]; 
             }                    

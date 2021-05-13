@@ -1,10 +1,10 @@
 import React from 'react';
-import MasterCountChart from './charts/MasterCountChart';
-import '../styles/styling.css';
+import MasterCountChart from '../charts/MasterCountChart';
+import '../../styles/styling.css';
 import { Grid } from '@material-ui/core';
 import {IntlProvider, FormattedMessage} from 'react-intl';
-import { LangMessage } from '../locale/locale';
-import { Destructure } from '../utils/Destructure';
+import { LangMessage } from '../../locale/locale';
+import { Destructure } from '../../utils/Destructure';
 export default class MasterCount  extends React.Component{
     constructor(props)
     {
@@ -26,7 +26,7 @@ export default class MasterCount  extends React.Component{
         return(
             <div className='defaultMargin'>
                 <IntlProvider locale={this.props.language} messages={LangMessage[this.props.language]}>
-                   <h3 style={{marginTop:'60px'}}>
+                   <h3 style={{marginTop:'60px'}} className='font'>
                        <FormattedMessage id='completion' value={this.props.language}/>
                    </h3>
                 </IntlProvider>
@@ -36,7 +36,7 @@ export default class MasterCount  extends React.Component{
                             <Grid container justify='center'>
                                 <Grid xs={12} md={7}>
                                        <MasterCountChart 
-                                        pageUrls={this.props.pageUrls}
+                                        state={this.props.state}
                                         mwoId={this.props.mwoId}
                                         language={this.props.language} 
                                         number={index+1}
