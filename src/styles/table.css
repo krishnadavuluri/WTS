@@ -36,7 +36,7 @@ th {
 td, th { 
 	padding: 10px; 
 	border: 1px solid black; 
-	text-align: left; 
+	text-align: center; 
 	font-size: 18px;
 	}
 
@@ -82,8 +82,11 @@ only screen and (max-width: 760px),
 		border-bottom: 1px solid #eee; 
 		position: relative;
 		padding-left: 50%; 
+		text-align: left;
 	}
-
+    th{
+		text-align: left;
+	}
 	td:before { 
 		/* Now like a table header */
 		position: absolute;
