@@ -7,6 +7,9 @@ import { LangMessage } from '../../locale/locale';
 export function AlertDismissibleExample({language,from,id}) {
     const [show, setShow] = useState(true);
     const history=useHistory();
+    const toggle=()=>{
+       setShow(false)
+    }
     if (show) {
         return (
             <Grid container justify='center' style={{marginTop:'330px'}}>

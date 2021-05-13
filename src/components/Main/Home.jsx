@@ -9,6 +9,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
 import Utils from '../../utils/utils';
+import {API} from '../../API/RequestAPI';
 export default function Home()
 {
     Utils.pageUrls=['/'];
@@ -27,7 +28,7 @@ export default function Home()
     useEffect(()=>{
         async function getData()
         {
-            const {data}=await axios.get('http://183.82.116.164:5432/master_work/'+state);       //Api call for master orders based on state
+            const {data}=await axios.get(API.getMasterWorkURL(state));       //Api call for master orders based on state
             setMasterOrders(data);
             setFlag(true);
         }

@@ -12,12 +12,10 @@ const isNotPrevious=(url)=>{
 
 const TopNavbar = (props) => {
     const history=useHistory();
-    
     if(isNotPrevious(props.location.pathname))
     {
         Utils.pageUrls=[...Utils.pageUrls,props.location.pathname];
     }
-
     const routeTo=(index,url)=>{
        Utils.pageUrls=Utils.pageUrls.slice(0,index);
        history.push(url);

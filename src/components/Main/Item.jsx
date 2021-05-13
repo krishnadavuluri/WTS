@@ -8,6 +8,7 @@ import  TopNavbar  from '../NavBar/Navbar';
 import { Destructure } from '../../utils/Destructure';
 import { StaticNav } from '../NavBar/StaticNavbar';
 import ItemDetails from './ItemDetails';
+import {API} from '../../API/RequestAPI'
 class Item extends Component {
      constructor(props)
      {
@@ -24,8 +25,8 @@ class Item extends Component {
      }
      async getItemViewData(mwoId,itemId,state)
      {
-       const itemDetails=await (await axios.get(`http://183.82.116.164:5432/7/master_view_data/${mwoId}/${itemId}/${state}`)).data
-       const {data}=await axios.get(`http://183.82.116.164:5432/7/item_view_data/${mwoId}/${itemId}/${state}`);  //Getting all processes of item
+       const itemDetails=await (await axios.get(API.getItemDetailsURL(mwoId,itemId,state))).data
+       const {data}=await axios.get(API.getItemViewURL(mwoId,itemId,state));  //Getting all processes of item
        this.setItemViewData(data,itemDetails);
      }
      setItemViewData(processData,itemDetails)
@@ -36,7 +37,7 @@ class Item extends Component {
      componentDidMount()
      {
           this.getItemViewData(this.props.match.params.mwoId,
-                 this.props.match.params.itemId,this.props.match.params.state);
+          this.props.match.params.itemId,this.props.match.params.state);
           
      }
 render() {
@@ -44,7 +45,7 @@ render() {
     <div>
        
        { this.state.flag ? this.state.noOfProcess===0 ? 
-         <AlertDismissibleExample language={this.props.match.params.lang} from="item" id={this.props.match.params.mwoId}/>:
+         <AlertDismissibleExample language={this.props.match.params.lang} from="item"  id={this.props.match.params.mwoId}/>:
          <>
          <TopNavbar/>
          <ItemDetails data={this.state.itemDetails} language={this.props.match.params.lang}/>
