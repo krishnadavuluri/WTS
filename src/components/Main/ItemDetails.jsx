@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from '../Table/Table';
+import { Table } from '../Table/Table'
 import '../../styles/table.css'
 const ItemDetails = ({data,language}) => {
     return (
