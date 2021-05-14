@@ -28,7 +28,7 @@ export default function Home()
     useEffect(()=>{
         async function getData()
         {
-            const {data}=await axios.get(API.getMasterWorkURL);       //Api call for master orders based on state
+            const {data}=await axios.get(API.getMasterWorkURL(state));       //Api call for master orders based on state
             setMasterOrders(data);
             setFlag(true);
         }
