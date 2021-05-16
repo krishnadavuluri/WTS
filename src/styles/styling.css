@@ -85,4 +85,10 @@
     margin-right: 10px;
     border: '1px solid black';
 }
-
+.whiteText
+{
+    text-color: white;
+}
+.blackText{
+    text-color:black
+}

@@ -4,16 +4,19 @@ import '../../styles/table.css';
 import '../../styles/styling.css'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-import { MultiLanguageTableColumn } from './LocaleColumn';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../../locale/locale';
 import { useHistory } from 'react-router-dom';
 import { TableColumn } from './TableColumn';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 export function Table(props) 
 {
     const history=useHistory();
     const unsortColumnName=TableColumn.unSortColumn;
     const tableColumn=TableColumn.getTableColumn(props.tableType,props.language);
+    const status=['Red','Green' ,'Orange'];
     const column=useMemo(()=>tableColumn,[tableColumn]);
     console.log(props.data);
     const TableData=useMemo(()=>props.data,[props.data]);
@@ -74,8 +77,18 @@ export function Table(props)
                             <tr {...row.getrowProps} onClick={()=> routeTo(row.original.id) }>
                                 {
                                     row.cells.map((cell)=>{
-                                        console.log(cell.value)
-                                    return <td key={cell.value} data-column={cell.column.Header} {...cell.getCellProps}>{cell.render('Cell')}</td>
+                                        if(!status.includes(cell.value))
+                                        {
+                                            return <td key={cell.value} data-column={cell.column.Header}
+                                             {...cell.getCellProps}>{cell.render('Cell')}
+                                             </td>
+                                        }
+                                        else{
+                                            return <td key={cell.value}
+                                             data-column={cell.column.Header} {...cell.getCellProps}>
+                                                 <WbIncandescentIcon style={{color:cell.value}}/>
+                                                 </td>
+                                        }
                                     })
                                 }
                             </tr>

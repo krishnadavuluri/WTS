@@ -6,7 +6,17 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor:'white'
+    },
+    tab:{
+      color:'black',
+      background:'white','&:hover': {
+        background: "#c8ff00",
+      }
+    },
+    activeTab:{
+      color:'red',
+      background:'#5D7700',
     },
   }));  
 export function TabPanel(props) {
@@ -43,8 +53,9 @@ export function TabPanel(props) {
   }
 
   export function LinkTab(props) {
+    console.log(props);
     return (
-      <Tab style={{color:"black"}}
+      <Tab 
         component="a"
         onClick={(event) => {
           event.preventDefault();

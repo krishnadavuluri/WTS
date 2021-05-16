@@ -8,7 +8,7 @@ import MasterCost from '../Main/MasterCost';
 import { Table } from '../Table/Table';
 import { useHistory } from 'react-router-dom';
 import { TabPanel,a11yProps , LinkTab ,useStyles} from './Tabs';
-import Navbar from 'react-bootstrap/Navbar'
+
 import Utils from '../../utils/utils';
 export default function NavTabs({mwoId,data,language,state}) {
   
@@ -28,17 +28,23 @@ export default function NavTabs({mwoId,data,language,state}) {
           variant="fullWidth"
           value={value}
           onChange={handleChange}
-          aria-label="nav tabs example"
-          style={{backgroundColor:'#d9d8d7'}}
+          className={classes.root} 
+          TabIndicatorProps={{style: {backgroundColor: "#5D7700"}}}
           >
-          <LinkTab label={<FormattedMessage id='completion' value={language}/>} {...a11yProps(0)} />
-          <LinkTab label={<FormattedMessage id='cost' value={language}/>}  {...a11yProps(1)} />
-          <LinkTab label={<FormattedMessage id='orderDetails' value={language}/>} {...a11yProps(2)} />
+          <LinkTab className={value===0?classes.activeTab:classes.tab} 
+            style={value===0?{ color:'white'}:{color:'black'}} 
+            label={<FormattedMessage id='completion' value={language}/>} {...a11yProps(0)} />
+          <LinkTab className={value===1?classes.activeTab:classes.tab}
+            style={value===1?{ color:'white'}:{color:'black'}} 
+            label={<FormattedMessage id='cost' value={language}/>}  {...a11yProps(1)} />
+          <LinkTab className={value===2?classes.activeTab:classes.tab} 
+            style={value===2?{ color:'white'}:{color:'black'}} 
+            label={<FormattedMessage id='orderDetails' value={language}/>} {...a11yProps(2)} />
         </Tabs>
        </IntlProvider> 
       </AppBar>
 
-        <TabPanel value={value} index={0}>
+        <TabPanel  value={value} index={0}>
           <MasterCount state={state}  data={data} language={language} mwoId={mwoId}/>
         </TabPanel>
         <TabPanel value={value} index={1}>

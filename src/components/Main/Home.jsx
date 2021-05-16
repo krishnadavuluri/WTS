@@ -12,7 +12,7 @@ import Utils from '../../utils/utils';
 import {API} from '../../API/RequestAPI';
 export default function Home()
 {
-    Utils.pageUrls=['/'];
+    localStorage.setItem('pageUrls',JSON.stringify({urls:['/']}))
     Utils.currentTab=0;
     const {register}=useForm();
     const [state,setState]=useState('opened');              //setting default state as 'opened'
