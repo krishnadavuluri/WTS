@@ -15,7 +15,7 @@ export const LangMessage={
         processProgress:'Order Continuance',
         mostSpent:'Most Spent',
         sort:'Sort',
-        error:'Has no issues',
+        error:'Has No Data',
         masterOrder:'Master Orders',
         leastSpent:'Least Spent',
         exceededCost:'Exceeded Cost',
@@ -38,7 +38,7 @@ export const LangMessage={
         completion:'समापन',
         orderDetails:'ऑर्डर का विवरण',
         processProgress:'आदेश निरंतरता',
-        error:'कोई मुद्दा नहीं है',
+        error:'कोई डेटा नहीं है',
         masterOrder:'मास्टर आदेश'
     },
     Tamil:
@@ -56,7 +56,7 @@ export const LangMessage={
         completion:'நிறைவு',
         orderDetails:'விவரங்கள்',
         processProgress:'முன்னேற்றம்',
-        error:'எந்த சிக்கலும் இல்லை',
+        error:'தரவு இல்லை',
         masterOrder:'முதன்மை ஆர்டர்கள்',
         exceededCost:'செலவு மீறியது',
         leastSpent:'குறைந்தது செலவு',
