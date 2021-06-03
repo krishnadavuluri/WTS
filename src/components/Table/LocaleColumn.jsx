@@ -6,7 +6,8 @@ export const ItemTableColumns={
     {Header:'END_DATE',accessor:'endDate'},
     {Header:'ASSIGNEE',accessor:'assignee'},
     {Header:'COST',accessor:'costString'},
-    {Header:'COUNT',accessor:'countString'}],
+    {Header:'COUNT',accessor:'countString'},
+    {Header:'STATUS',accessor:'color'}],
     Hindi:[
     {Header:'ईद',accessor:'id'},
     {Header:'शीर्षक',accessor:'title'},
@@ -14,7 +15,8 @@ export const ItemTableColumns={
     {Header:'समाप्ति तिथि',accessor:'endDate'},
     {Header:'संपत्ति-भागी',accessor:'assignee'},
     {Header:'लागत',accessor:'costString'},
-    {Header:'गिनती',accessor:'countString'}
+    {Header:'गिनती',accessor:'countString'},
+    {Header:'स्थिति',accessor:'color'}
    ],
    Tamil:[
     {Header:'ஐடி',accessor:'id'},
@@ -23,7 +25,8 @@ export const ItemTableColumns={
     {Header:'கடைசி தேதி',accessor:'endDate'},
     {Header:'ஒதுக்குபவர்',accessor:'assignee'},
     {Header:'செலவு',accessor:'costString'},
-    {Header:'எண்ணிக்கை',accessor:'countString'}
+    {Header:'எண்ணிக்கை',accessor:'countString'},
+    {Header:'நிலை',accessor:'color'}
    ]
 }
 export const MasterTableColumns={
