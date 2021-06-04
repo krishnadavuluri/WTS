@@ -6,15 +6,15 @@ import { LangMessage } from '../../locale/locale';
 import MasterCount from '../Main/MasterCount';
 import MasterCost from '../Main/MasterCost';
 import { Table } from '../Table/Table';
-import { useHistory } from 'react-router-dom';
 import { TabPanel,a11yProps , LinkTab ,useStyles} from './Tabs';
-
 import Utils from '../../utils/utils';
+import StatusBox from '../Response/StatusBox';
+
 export default function NavTabs({mwoId,data,language,state}) {
   
   const classes = useStyles();
   const [value, setValue] = React.useState(Utils.currentTab);
-  const history=useHistory();
+
 
   const handleChange = (event, newValue) => {
         Utils.currentTab=newValue;
@@ -57,6 +57,7 @@ export default function NavTabs({mwoId,data,language,state}) {
               mwoId={mwoId}
               language={language} 
               tableType='item' />
+           <StatusBox Data={data} lang={language}/>   
       </TabPanel>
 
     </div>

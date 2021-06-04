@@ -10,6 +10,8 @@ import { LangMessage } from '../../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
 import Utils from '../../utils/utils';
 import {API} from '../../API/RequestAPI';
+import StatusBox from '../Response/StatusBox';
+localStorage.setItem('Language','English');
 export default function Home()
 {
     localStorage.setItem('pageUrls',JSON.stringify({urls:['/']}))
@@ -18,12 +20,14 @@ export default function Home()
     const [state,setState]=useState('opened');              //setting default state as 'opened'
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
     const [flag,setFlag]=useState(false)                  // setting flag
-    const [locale,setLocale]=useState('English');
+    const [locale,setLocale]=useState(localStorage.getItem('Language'));
     const handleRadio1=(e)=>{
         setState(e.target.name);          // Handle radio button action
     }
     const handleLocale=(e)=>{
-        setLocale(e.target.value);
+        localStorage.setItem('Language',e.target.value);
+        setLocale(localStorage.getItem('Language'));
+        
     }
     useEffect(()=>{
         async function getData()
@@ -56,10 +60,10 @@ export default function Home()
               {/* Language selector */}
               <Grid item xs={6} style={{marginTop:'5px'}} >
                    <LanguageIcon/>
-                   <select onChange={handleLocale} id='landDropDown' className='language-dropDown' >
+                   <select onChange={handleLocale} value={locale} id='landDropDown' className='language-dropDown' >
                      {
-                       ['English','Hindi','Tamil'].map((key)=>(
-                          <option value={key}>{key}</option>
+                       ['English','Hindi','Tamil'].map((value,index)=>(
+                          <option value={value} key={index}>{value}</option>
                          ))
                      }
                    </select>
@@ -67,6 +71,7 @@ export default function Home()
            </Grid>
           </IntlProvider> 
          <Table data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
+         <StatusBox Data={masterOrders} lang={locale}/>
         </Grid>
         </>
         : <Loader/>

@@ -15,6 +15,15 @@ export default class Utils
         }
         return colours;
     }
+    static getStatusCount(data)
+    {
+        var statusCount={'Green':0,'Red':0,'Orange':0};
+        for(let i=0;i<data.length;i++)
+        {
+            statusCount[data[i].color]+=1;
+        }
+        return statusCount;
+    }
     static getExceededCost(actCost,estCost,itemIds)
     {
          var ActCost=[];

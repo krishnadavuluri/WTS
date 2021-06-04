@@ -9,7 +9,6 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../../locale/locale';
 import { useHistory } from 'react-router-dom';
 import { TableColumn } from './TableColumn';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 export function Table(props) 
 {
@@ -105,8 +104,8 @@ export function Table(props)
                     <label id='show'><FormattedMessage id='show' value={props.language}/></label>{' '}
                     <select className='dropDown' id='show' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
                      {
-                       [10,15,20,50].map(pageSize=>(
-                       <option key={pageSize} value={pageSize}>{pageSize}</option>
+                       [10,15,20,50].map((pageSize,index)=>(
+                       <option key={index} value={pageSize}>{pageSize}</option>
                        ))
                      }
                     </select>

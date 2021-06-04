@@ -92,3 +92,9 @@
 .blackText{
     text-color:black
 }
+.Status-Box{
+    background-color: #c8ff00;
+}
+.Border{
+    border: 1px solid;
+}
