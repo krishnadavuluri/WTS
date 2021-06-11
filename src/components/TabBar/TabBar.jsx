@@ -9,7 +9,7 @@ import { Table } from '../Table/Table';
 import { TabPanel,a11yProps , LinkTab ,useStyles} from './Tabs';
 import Utils from '../../utils/utils';
 import StatusBox from '../Response/StatusBox';
-
+import Data from './../../sample.json'
 export default function NavTabs({mwoId,data,language,state}) {
   
   const classes = useStyles();
@@ -48,7 +48,7 @@ export default function NavTabs({mwoId,data,language,state}) {
           <MasterCount state={state}  data={data} language={language} mwoId={mwoId}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-           <MasterCost state={state} mwoId={mwoId} data={data} language={language}/> {/* Tab buttons*/}
+           <MasterCost state={state} mwoId={mwoId} data={Data} language={language}/> {/* Tab buttons*/}
         </TabPanel>
         <TabPanel value={value} index={2}>
            <Table 
