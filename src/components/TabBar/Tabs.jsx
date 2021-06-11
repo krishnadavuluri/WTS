@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
+import { BorderLeft } from '@material-ui/icons';
 export const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -12,7 +13,9 @@ export const useStyles = makeStyles((theme) => ({
       color:'black',
       background:'white','&:hover': {
         background: "#c8ff00",
-      }
+      },
+      borderLeft:'1px solid #bdbdbb',
+      borderRight:'1px solid #bdbdbb'
     },
     activeTab:{
       color:'red',

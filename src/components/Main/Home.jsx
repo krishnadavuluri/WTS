@@ -71,7 +71,6 @@ export default function Home()
            </Grid>
           </IntlProvider> 
          <Table data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
-         <StatusBox Data={masterOrders} lang={locale}/>
         </Grid>
         </>
         : <Loader/>

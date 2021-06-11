@@ -56,10 +56,8 @@ export default function NavTabs({mwoId,data,language,state}) {
               data={data}
               mwoId={mwoId}
               language={language} 
-              tableType='item' />
-           <StatusBox Data={data} lang={language}/>   
+              tableType='item' />  
       </TabPanel>
-
     </div>
   );
 }

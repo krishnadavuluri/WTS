@@ -51,6 +51,19 @@
     margin-bottom: 10px;
     margin-top: 45px;
 }
+.RedColor{
+    color: red;
+}
+.GreenColor{
+    color:green;
+}
+.OrangeColor{
+    color:orange;
+}
+.LeftRightBorder{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
 .bg
 {
        background: #c8ff00;

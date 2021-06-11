@@ -9,6 +9,7 @@ import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../../locale/locale';
 import { useHistory } from 'react-router-dom';
 import { TableColumn } from './TableColumn';
+import StatusBox from './../Response/StatusBox'
 import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 export function Table(props) 
 {
@@ -73,10 +74,12 @@ export function Table(props)
                     page.map((row)=>{
                         prepareRow(row);
                         return (
-                            <tr {...row.getrowProps} onClick={()=> routeTo(row.original.id) }>
+                            <tr {...row.getrowProps} onClick={()=> routeTo(row.original.id)}>
                                 {
                                     row.cells.map((cell)=>{
-                                        if(!status.includes(cell.value))
+                                        console.log('Cell',cell.column.Header)
+                                        // if(!status.includes(cell.value))
+                                        if(cell.column.Header!=='STATUS')
                                         {
                                             return <td key={cell.value} data-column={cell.column.Header}
                                              {...cell.getCellProps}>{cell.render('Cell')}
@@ -85,7 +88,7 @@ export function Table(props)
                                         else{
                                             return <td key={cell.value}
                                              data-column={cell.column.Header} {...cell.getCellProps}>
-                                                 <WbIncandescentIcon style={{color:cell.value}}/>
+                                                 <StatusBox issueStatus={[4,5,1]}/>
                                                  </td>
                                         }
                                     })
