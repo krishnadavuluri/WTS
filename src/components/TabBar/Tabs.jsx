@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
-import { BorderLeft } from '@material-ui/icons';
 export const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
