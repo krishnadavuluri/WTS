@@ -78,12 +78,26 @@
     padding-right: 30px;
     margin:10px;
 }
-
+.LabelText{
+    font-size:20px;
+}
+.RadioWidth{
+    height: 15px;
+    width: 15px;
+}
 @media all and (max-width: 550px){
    .CountChartBox{
        height:450px;
    }
+   .LabelText{
+       font-size: 10px;
+   }
+   .RadioWidth{
+       width: 10px;
+       height: 10px;
+   }
 }
+
 .Button:checked{
     background-color: blue;
 }

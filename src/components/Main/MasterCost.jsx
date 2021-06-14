@@ -81,31 +81,31 @@ export default class MasterCost extends Component
                       </h3>
                       <Grid container justify='center' >
                         <Grid container xs={12} md={7} >
-                            <Grid item xs={12}  md={3}>
+                            <Grid item xs={3}  md={3}>
                                <input onChange={this.handleChange} type='radio' id='least' name='least'
-                                checked={this.state.least} className='onHover'/>
-                               <label id='least'> 
+                                checked={this.state.least} className='onHover RadioWidth'/>
+                               <label id='least' className='LabelText'> 
                                  <FormattedMessage id='leastSpent' value={this.props.language}/>
                                </label>
                             </Grid>
-                            <Grid item xs={12}   md={3}>
+                            <Grid item xs={3}   md={3}>
                                <input onChange={this.handleChange} type='radio' id='most' name='most' 
-                               checked={this.state.most} className='onHover'/>
-                               <label id='most'>
+                               checked={this.state.most} className='onHover RadioWidth'/>
+                               <label id='most' className='LabelText'>
                                     <FormattedMessage id='mostSpent' value={this.props.language}/>
                                 </label>
                             </Grid>
-                            <Grid item xs={12}   md={3}>
+                            <Grid item xs={3}   md={3}>
                                <input onChange={this.handleChange} type='radio' id='more' name='more' 
-                               checked={this.state.more} className='onHover'/>
-                               <label id='more'> 
+                               checked={this.state.more} className='onHover RadioWidth'/>
+                               <label id='more' className='LabelText'> 
                                     <FormattedMessage id='exceededCost' value={this.props.language}/>
                                 </label>
                             </Grid>
-                            <Grid item xs={12}   md={3}>
+                            <Grid item xs={3}   md={3}>
                                <input onChange={this.handleChange} type='radio' id='sort' name='sort'
-                                checked={this.state.sort} className='onHover'/>
-                               <label id='more'>
+                                checked={this.state.sort} className='onHover RadioWidth'/>
+                               <label id='more' className='LabelText'>
                                    <FormattedMessage id='sort' value={this.props.language}/>
                                 </label>
                             </Grid>

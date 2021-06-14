@@ -4,7 +4,7 @@ export class Destructure
 {
    static masterCompletionData(data)
    {
-        const maxChartItems=8;
+        const maxChartItems=15;
         const itemsData=data;
         var itemsCount=[];
         var itemsId=[];

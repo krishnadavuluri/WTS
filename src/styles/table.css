@@ -6,7 +6,7 @@ table {
 	}
 .dropDown{
 	margin-top: 20px;
-	width: 50px;
+	width: 80px;
 	background-color:#c8ff00 ;
 }
 .dropDown:hover{
@@ -17,8 +17,8 @@ option:hover{
 }
 .Go-to-page
 {
-   width: 30px;
-   margin-right: 5px;
+   width: 60px;
+   margin-top: 20px;
 }
 /* Zebra striping */
 tr:nth-of-type(even) { 
@@ -62,9 +62,9 @@ only screen and (max-width: 760px),
 		display: block; 
 	}
 	.Go-to-page{
-		width: 100px;
+		width: 80px;
 		font-size: 10px;
-		margin: 0;
+		margin:0;
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */

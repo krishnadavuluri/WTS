@@ -4,13 +4,12 @@ import '../../styles/table.css';
 import '../../styles/styling.css'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import Grid from '@material-ui/core/Grid';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 import { LangMessage } from '../../locale/locale';
 import { useHistory } from 'react-router-dom';
 import { TableColumn } from './TableColumn';
 import StatusBox from './../Response/StatusBox'
-import WbIncandescentIcon from '@material-ui/icons/WbIncandescent';
 export function Table(props) 
 {
     const history=useHistory();
@@ -103,7 +102,10 @@ export function Table(props)
             {
                 props.tableType!=='singleItem' ? 
                 <IntlProvider locale={props.language} messages={LangMessage[props.language]}>
-                  <span>
+                <Grid container justify='center'>
+                  <Grid container xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
+                    <span>
                     <label id='show'><FormattedMessage id='show' value={props.language}/></label>{' '}
                     <select className='dropDown' id='show' value={pageSize} onChange={e=> setPageSize(Number(e.target.value))}>
                      {
@@ -120,17 +122,22 @@ export function Table(props)
                     </strong>{' '}
                   </span>
               
+                   
+                   </Grid>
+                   
+                   <Grid item xs={12} md={6}>
                    | <FormattedMessage id='goTo' value={props.language}/>{' '}
                    <input  className='Go-to-page' type='text' 
                    onChange={(e)=>{
                        const pageNumber= e.target.value ? Number(e.target.value)-1: 0
                        gotoPage(pageNumber)
                    }}  /> 
-        
-                <button style={{marginLeft:'10px'}} className='button' onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
-                <button className='button' onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
-                <button className='button' onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
-                <button className='button' onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button>
+                   <button style={{marginLeft:'10px'}} className='button' onClick={()=> gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
+                   <button className='button' onClick={()=> previousPage()} disabled={!canPreviousPage}>{'<'}</button>
+                   <button className='button' onClick={()=> nextPage()} disabled={!canNextPage}>{'>'}</button>
+                   <button className='button' onClick={()=> gotoPage(pageOptions.length-1)} disabled={!canNextPage}>{'>>'}</button></Grid>
+                 </Grid>
+                </Grid>
                </IntlProvider>:''
             }
         </div>

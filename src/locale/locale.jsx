@@ -21,7 +21,7 @@ export const LangMessage={
         error:'Has No Data',
         masterOrder:'Master Orders',
         leastSpent:'Least Spent',
-        exceededCost:'Exceeded Cost',
+        exceededCost:'Exceed Cost',
     },
     Hindi:{
         open:'खुला',
