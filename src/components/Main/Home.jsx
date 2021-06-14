@@ -1,4 +1,4 @@
-import React, {useState ,useEffect} from 'react'
+import  {useState ,useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 import {useForm} from 'react-hook-form';
 import "../../styles/styling.css";                //User home page
