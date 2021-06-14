@@ -10,7 +10,6 @@ import { LangMessage } from '../../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
 import Utils from '../../utils/utils';
 import {API} from '../../API/RequestAPI';
-import StatusBox from '../Response/StatusBox';
 localStorage.setItem('Language','English');
 export default function Home()
 {
