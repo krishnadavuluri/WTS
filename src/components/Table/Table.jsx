@@ -17,7 +17,7 @@ export function Table(props)
     const tableColumn=TableColumn.getTableColumn(props.tableType,props.language);
     const status=['Red','Green' ,'Orange'];
     const column=useMemo(()=>tableColumn,[tableColumn]);
-    console.log(props.data);
+    console.log('TableData:',props.data);
     const TableData=useMemo(()=>props.data,[props.data]);
     const tableInstance=useTable({columns:column,data:TableData},useSortBy,usePagination); // specifying data,comlumn and options used in table
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,  //extracting all props from table instance
@@ -76,7 +76,7 @@ export function Table(props)
                             <tr {...row.getrowProps} onClick={()=> routeTo(row.original.id)}>
                                 {
                                     row.cells.map((cell)=>{
-                                        console.log('Cell',cell.column.Header)
+                                        
                                         // if(!status.includes(cell.value))
                                         if(cell.column.Header!=='STATUS')
                                         {
@@ -87,7 +87,8 @@ export function Table(props)
                                         else{
                                             return <td key={cell.value}
                                              data-column={cell.column.Header} {...cell.getCellProps}>
-                                                 <StatusBox issueStatus={[4,5,1]}/>
+                                                  {console.log('Cell',cell.value)}
+                                                 <StatusBox issueStatus={cell.value}/>
                                                  </td>
                                         }
                                     })

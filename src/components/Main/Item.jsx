@@ -9,6 +9,7 @@ import { Destructure } from '../../utils/Destructure';
 import { StaticNav } from '../NavBar/StaticNavbar';
 import ItemDetails from './ItemDetails';
 import {API} from '../../API/RequestAPI'
+import SampleItemData from './../../process.json'
 class Item extends Component {
      constructor(props)
      {
@@ -31,7 +32,8 @@ class Item extends Component {
      }
      setItemViewData(processData,itemDetails)
      {
-            const {allProcess,noOfProcess}=Destructure.itemProgressData(processData);
+            const data=Destructure.Sample(processData);
+            const {allProcess,noOfProcess}=Destructure.itemProgressData(data);
             this.setState({processData:allProcess,itemDetails:itemDetails,flag:true,noOfProcess:noOfProcess});
      }
      componentDidMount()

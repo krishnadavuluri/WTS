@@ -45,15 +45,15 @@ export default function NavTabs({mwoId,data,language,state}) {
       </AppBar>
 
         <TabPanel  value={value} index={0}>
-          <MasterCount state={state}  data={Data} language={language} mwoId={mwoId}/>
+          <MasterCount state={state}  data={data} language={language} mwoId={mwoId}/>
         </TabPanel>
         <TabPanel value={value} index={1}>
-           <MasterCost state={state} mwoId={mwoId} data={Data} language={language}/> {/* Tab buttons*/}
+           <MasterCost state={state} mwoId={mwoId} data={data} language={language}/> {/* Tab buttons*/}
         </TabPanel>
         <TabPanel value={value} index={2}>
            <Table 
               state={state}
-              data={Data}
+              data={data}
               mwoId={mwoId}
               language={language} 
               tableType='item' />  

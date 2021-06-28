@@ -2,9 +2,18 @@ import {ganttChartOptions} from '../components/charts/ChartOptions'
 import moment from 'moment';
 export class Destructure
 {
+   static Sample(data)
+   {
+       var a=[];
+       data.map((value,index)=>{
+          value['id']=""+index
+          a=[...a,value];
+       })
+       return a;
+   } 
    static masterCompletionData(data)
    {
-        const maxChartItems=15;
+        const maxChartItems=8;
         const itemsData=data;
         var itemsCount=[];
         var itemsId=[];

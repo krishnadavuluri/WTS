@@ -7,7 +7,7 @@ import { LangMessage } from '../../locale/locale';
 import Grid from '@material-ui/core/Grid';
 export default function ItemTimeProgressChart({data,noOfProcess,language})
 {
-    const height=noOfProcess*50; // specifying height of table
+    const height=noOfProcess*43; // specifying height of table
 
     return(
       <div>
