@@ -36,7 +36,9 @@ export function Table(props)
             history.push(`/Item/mwo/${props.mwoId}/item/`+id+'/lang/'+props.language+'/state/'+props.state)
         } 
       }    
-    
+    const click=()=>{
+      props.fun(20)
+    }
     return (
         <>
         <IntlProvider locale={props.language} messages={LangMessage[props.language]}>

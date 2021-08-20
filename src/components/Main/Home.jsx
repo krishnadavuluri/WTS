@@ -10,6 +10,8 @@ import { LangMessage } from '../../locale/locale';
 import LanguageIcon from '@material-ui/icons/Language';
 import Utils from '../../utils/utils';
 import {API} from '../../API/RequestAPI';
+import MasterDataOpened from './../../Data/masterOpened.json'
+import MasterDataClosed from './../../Data/masterClosed.json'
 localStorage.setItem('Language','English');
 export default function Home()
 {
@@ -28,11 +30,14 @@ export default function Home()
         setLocale(localStorage.getItem('Language'));
         
     }
+    const fun=(data)=>{
+        alert(data);
+    }
     useEffect(()=>{
         async function getData()
         {
-            const {data}=await axios.get(API.getMasterWorkURL(state));       //Api call for master orders based on state
-            setMasterOrders(data);
+            // const {data}=await axios.get(API.getMasterWorkURL(state));       //Api call for master orders based on state
+            state==='opened'? setMasterOrders(MasterDataOpened):setMasterOrders(MasterDataClosed)
             setFlag(true);
         }
         getData();
@@ -69,7 +74,7 @@ export default function Home()
               </Grid>
            </Grid>
           </IntlProvider> 
-         <Table data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
+         <Table fun={fun} data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
         </Grid>
         </>
         : <Loader/>

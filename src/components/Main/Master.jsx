@@ -6,6 +6,7 @@ import { AlertDismissibleExample } from '../Response/AlertBox';
 import NavTabs from '../TabBar/TabBar'
 import { StaticNav } from '../NavBar/StaticNavbar';
 import {API} from '../../API/RequestAPI'
+import ItemData from './../../Data/items.json'
 class  Master extends React.Component {
     
        state={
@@ -16,8 +17,8 @@ class  Master extends React.Component {
        getMasterData= async ()=>{
         const id=this.props.match.params.mwoId;
         const state=this.props.match.params.state;
-        const {data}=await axios.get(API.getMasterViewURL(id,state)); 
-        this.setState({masterData:data,flag:true});
+        //const {data}=await axios.get(API.getMasterViewURL(id,state)); 
+        this.setState({masterData:ItemData,flag:true});
        }  
 
        componentDidMount()

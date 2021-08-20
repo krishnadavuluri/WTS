@@ -9,7 +9,8 @@ import { Destructure } from '../../utils/Destructure';
 import { StaticNav } from '../NavBar/StaticNavbar';
 import ItemDetails from './ItemDetails';
 import {API} from '../../API/RequestAPI'
-import SampleItemData from './../../process.json'
+import SingleItem from './../../Data/singleItem.json'
+import ProcessData from './../../Data/process.json'
 class Item extends Component {
      constructor(props)
      {
@@ -26,9 +27,9 @@ class Item extends Component {
      }
      async getItemViewData(mwoId,itemId,state)
      {
-       const itemDetails=await (await axios.get(API.getItemDetailsURL(mwoId,itemId,state))).data
-       const {data}=await axios.get(API.getItemViewURL(mwoId,itemId,state));  //Getting all processes of item
-       this.setItemViewData(data,itemDetails);
+       //const itemDetails=await (await axios.get(API.getItemDetailsURL(mwoId,itemId,state))).data
+       //const {data}=await axios.get(API.getItemViewURL(mwoId,itemId,state));  //Getting all processes of item
+       this.setItemViewData(ProcessData,SingleItem);
      }
      setItemViewData(processData,itemDetails)
      {

@@ -12,13 +12,13 @@ const StatusBox = ({issueStatus}) => {
         <div>
           <Grid container justify='center'>
             <Grid xs={4} className=''>
-              <center><span><WbIncandescentIcon className='GreenColor'/> <strong>{100}</strong></span></center>
+              <center><span><WbIncandescentIcon className='GreenColor'/> <strong>{issueStatus[0]}</strong></span></center>
             </Grid>
             <Grid xs={4} className='LeftRightBorder'>
-              <center><span><WbIncandescentIcon className='OrangeColor'/> <strong>{256}</strong></span></center>
+              <center><span><WbIncandescentIcon className='OrangeColor'/> <strong>{issueStatus[2]}</strong></span></center>
             </Grid>
             <Grid xs={4} className=''>
-              <center><span><WbIncandescentIcon className='RedColor'/> <strong>{458}</strong></span></center>
+              <center><span><WbIncandescentIcon className='RedColor'/> <strong>{issueStatus[1]}</strong></span></center>
             </Grid>
           </Grid>
         </div>
