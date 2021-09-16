@@ -12,7 +12,15 @@ import Utils from '../../utils/utils';
 import {API} from '../../API/RequestAPI';
 import MasterDataOpened from './../../Data/masterOpened.json'
 import MasterDataClosed from './../../Data/masterClosed.json'
+import Time from './../TImeStamp/time'
 localStorage.setItem('Language','English');
+let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
+  
 export default function Home()
 {
     localStorage.setItem('pageUrls',JSON.stringify({urls:['/']}))
@@ -22,6 +30,7 @@ export default function Home()
     const [masterOrders,setMasterOrders]=useState([]);     //setting all master orders
     const [flag,setFlag]=useState(false)                  // setting flag
     const [locale,setLocale]=useState(localStorage.getItem('Language'));
+    const [updatedAt,setUpdatedAt]=useState({});
     const handleRadio1=(e)=>{
         setState(e.target.name);          // Handle radio button action
     }
@@ -36,8 +45,11 @@ export default function Home()
     useEffect(()=>{
         async function getData()
         {
-            // const {data}=await axios.get(API.getMasterWorkURL(state));       //Api call for master orders based on state
-            state==='opened'? setMasterOrders(MasterDataOpened):setMasterOrders(MasterDataClosed)
+            const {data}=await axios.get(API.getMasterWorkURL(state))      //Api call for master orders based on state
+            setMasterOrders(data.work_orders)
+            // console.log(data)
+            setUpdatedAt({'time':data.last_fetch_at.time,'date':data.last_fetch_at.date});
+            // state==='opened'? setMasterOrders(MasterDataOpened):setMasterOrders(MasterDataClosed)
             setFlag(true);
         }
         getData();
@@ -74,6 +86,8 @@ export default function Home()
               </Grid>
            </Grid>
           </IntlProvider> 
+         {/* <h1 style={{float:'left'}}>{updatedAt}</h1> */}
+         <Time lastUpdate={updatedAt}/>
          <Table fun={fun} data={masterOrders} state={state} language={locale} tableType='master' /> {/*Calling master table */}
         </Grid>
         </>

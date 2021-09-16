@@ -1,8 +1,9 @@
+
 export class API
 {
     static getMasterWorkURL(state)
     {
-        return 'http://183.82.116.164:5432/master_work/'+state;
+        return 'http://124.123.33.218:5432/master_work/'+state;
     }
     static getMasterViewURL(id,state)
     {

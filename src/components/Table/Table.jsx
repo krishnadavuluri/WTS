@@ -17,7 +17,7 @@ export function Table(props)
     const tableColumn=TableColumn.getTableColumn(props.tableType,props.language);
     const status=['Red','Green' ,'Orange'];
     const column=useMemo(()=>tableColumn,[tableColumn]);
-    console.log('TableData:',props.data);
+    // console.log('TableData:',props.data);
     const TableData=useMemo(()=>props.data,[props.data]);
     const tableInstance=useTable({columns:column,data:TableData},useSortBy,usePagination); // specifying data,comlumn and options used in table
     const{getTableProps,getTableBodyProps,headerGroups,page,gotoPage,prepareRow,canNextPage,  //extracting all props from table instance
@@ -29,7 +29,7 @@ export function Table(props)
 
         if(props.tableType==='master')
         {
-            history.push("/Master/mwo/"+id+'/lang/'+props.language+'/state/'+props.state);   
+            // history.push("/Master/mwo/"+id+'/lang/'+props.language+'/state/'+props.state);   
         }
         else if(props.tableType==='item'){
             
@@ -89,7 +89,7 @@ export function Table(props)
                                         else{
                                             return <td key={cell.value}
                                              data-column={cell.column.Header} {...cell.getCellProps}>
-                                                  {console.log('Cell',cell.value)}
+                                                  {/* {console.log('Cell',cell.value)} */}
                                                  <StatusBox issueStatus={cell.value}/>
                                                  </td>
                                         }
@@ -106,7 +106,7 @@ export function Table(props)
                 props.tableType!=='singleItem' ? 
                 <IntlProvider locale={props.language} messages={LangMessage[props.language]}>
                 <Grid container justify='center'>
-                  <Grid container xs={12} md={4}>
+                  <Grid container item xs={12} md={4}>
                     <Grid item xs={12} md={6}>
                     <span>
                     <label id='show'><FormattedMessage id='show' value={props.language}/></label>{' '}
